@@ -19,7 +19,7 @@ const products = [
     chocolate:  "White & Dark Chocolate",
     lid:        "#8B2252",
     image:      "/products/raspberries-dark.png",
-    tagline:    "The same juicy raspberry, finished with a bold 70% Ecuadorian dark chocolate.",
+    tagline:    "The same juicy raspberry, finished with a bold Ecuadorian dark chocolate.",
     weight:     "150g",
   },
   {
@@ -28,7 +28,7 @@ const products = [
     chocolate:  "White & Milk Chocolate",
     lid:        "#6B4FA8",
     image:      "/products/blueberries.png",
-    tagline:    "Plump, frozen blueberries enrobed in smooth white and velvety milk chocolate.",
+    tagline:    "Plump frozen blueberries enrobed in smooth white and velvety milk chocolate.",
     weight:     "150g",
   },
   {
@@ -46,10 +46,94 @@ const products = [
     chocolate:  "White & Dark Chocolate",
     lid:        "#A07840",
     image:      "/products/banana.png",
-    tagline:    "Sweet frozen banana with a rich white layer and a deep Ecuadorian dark chocolate finish.",
+    tagline:    "Sweet frozen banana with a rich white layer and a deep dark chocolate finish.",
     weight:     "150g",
   },
 ];
+
+// Per-product fallback tub rendered entirely in CSS/SVG
+function ProductFallback({ product }: { product: typeof products[0] }) {
+  return (
+    <div className="w-56 md:w-64 flex flex-col items-center gap-3 select-none">
+      {/* Floating lid */}
+      <motion.div
+        className="w-44 h-10 rounded-full shadow-lg flex items-center justify-center"
+        style={{ backgroundColor: product.lid }}
+        animate={{ y: [0, -6, 0] }}
+        transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+      >
+        <span className="font-sans text-white text-[10px] tracking-[0.25em] uppercase font-semibold">
+          KOKOA
+        </span>
+      </motion.div>
+
+      {/* Tub body */}
+      <div className="w-40 md:w-44 rounded-b-2xl rounded-t-lg bg-white border border-gray-100 shadow-xl overflow-hidden">
+        {/* Coloured top band matching lid */}
+        <div className="h-2" style={{ backgroundColor: product.lid }} />
+        <div className="px-4 py-5 flex flex-col items-center text-center gap-1">
+          <span className="font-sans text-[9px] tracking-[0.2em] uppercase text-gray-400">
+            Ecuadorian Chocolate · Bean to Cup
+          </span>
+          <span
+            className="font-serif text-lg font-bold mt-1"
+            style={{ color: product.lid }}
+          >
+            {product.name}
+          </span>
+          <span className="font-sans text-[10px] text-gray-500 leading-tight">
+            {product.chocolate}
+          </span>
+          <span className="font-sans text-[10px] text-gray-400 mt-2">
+            Net Weight: {product.weight}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ProductImage({ product }: { product: typeof products[0] }) {
+  const [failed, setFailed] = useState(false);
+
+  if (failed) return <ProductFallback product={product} />;
+
+  return (
+    <img
+      src={product.image}
+      alt={`Kokoa ${product.name} — ${product.chocolate}`}
+      className="w-64 md:w-72 lg:w-80 xl:w-96 object-contain drop-shadow-xl"
+      onError={() => setFailed(true)}
+    />
+  );
+}
+
+function MiniCardImage({ product }: { product: typeof products[0] }) {
+  const [failed, setFailed] = useState(false);
+
+  if (failed) {
+    return (
+      <div
+        className="w-full h-24 rounded-lg flex items-center justify-center mb-3"
+        style={{ backgroundColor: product.lid + "22" }}
+      >
+        <div
+          className="w-8 h-8 rounded-full"
+          style={{ backgroundColor: product.lid }}
+        />
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={product.image}
+      alt={product.name}
+      className="w-full h-24 object-contain mb-3"
+      onError={() => setFailed(true)}
+    />
+  );
+}
 
 export default function ProductShowcase() {
   const [active, setActive] = useState(products[0].slug);
@@ -83,23 +167,22 @@ export default function ProductShowcase() {
         {/* Interactive product display */}
         <div className="grid lg:grid-cols-2 gap-12 items-center">
 
-          {/* Left — large product image */}
-          <div className="flex justify-center">
+          {/* Left — product image */}
+          <div className="flex justify-center min-h-[320px] items-center">
             <AnimatePresence mode="wait">
-              <motion.img
+              <motion.div
                 key={current.slug}
-                src={current.image}
-                alt={`Kokoa ${current.name} — ${current.chocolate}`}
-                className="w-72 md:w-[340px] lg:w-[400px] object-contain drop-shadow-xl"
                 initial={{ opacity: 0, scale: 0.92, y: 20 }}
                 animate={{ opacity: 1, scale: 1,   y: 0  }}
                 exit={{   opacity: 0, scale: 0.92, y: -20 }}
-                transition={{ duration: 0.45, ease: "easeOut" }}
-              />
+                transition={{ duration: 0.4, ease: "easeOut" }}
+              >
+                <ProductImage product={current} />
+              </motion.div>
             </AnimatePresence>
           </div>
 
-          {/* Right — product info + selector */}
+          {/* Right — info + selector */}
           <div>
             {/* Flavour selector pills */}
             <div className="flex flex-wrap gap-3 mb-10">
@@ -112,11 +195,7 @@ export default function ProductShowcase() {
                       ? "text-white border-transparent shadow-md"
                       : "text-kokoa-dark/60 border-kokoa-dark/15 hover:border-kokoa-dark/30 bg-white"
                   }`}
-                  style={
-                    active === p.slug
-                      ? { backgroundColor: p.lid, borderColor: p.lid }
-                      : {}
-                  }
+                  style={active === p.slug ? { backgroundColor: p.lid, borderColor: p.lid } : {}}
                 >
                   {p.name}
                 </button>
@@ -130,13 +209,9 @@ export default function ProductShowcase() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{   opacity: 0, x: -20 }}
-                transition={{ duration: 0.35 }}
+                transition={{ duration: 0.3 }}
               >
-                {/* Lid colour accent line */}
-                <div
-                  className="w-10 h-1 rounded-full mb-6"
-                  style={{ backgroundColor: current.lid }}
-                />
+                <div className="w-10 h-1 rounded-full mb-6" style={{ backgroundColor: current.lid }} />
 
                 <h3 className="font-serif text-4xl md:text-5xl text-kokoa-dark mb-2">
                   {current.name}
@@ -149,7 +224,6 @@ export default function ProductShowcase() {
                   {current.tagline}
                 </p>
 
-                {/* Specs row */}
                 <div className="flex flex-wrap gap-6">
                   {[
                     { label: "Net weight",    value: current.weight },
@@ -172,7 +246,7 @@ export default function ProductShowcase() {
           </div>
         </div>
 
-        {/* Bottom strip — all 5 products as mini cards */}
+        {/* Bottom mini card grid */}
         <motion.div
           className="mt-20 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"
           initial={{ opacity: 0, y: 30 }}
@@ -194,22 +268,14 @@ export default function ProductShowcase() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.07 }}
             >
-              <img
-                src={p.image}
-                alt={p.name}
-                className="w-full h-24 object-contain mb-3"
-              />
+              <MiniCardImage product={p} />
               <p className="font-serif text-sm text-kokoa-dark leading-tight mb-0.5">
                 {p.name}
               </p>
               <p className="font-sans text-xs text-kokoa-dark/40 leading-tight">
                 {p.chocolate}
               </p>
-              {/* Lid colour dot */}
-              <div
-                className="w-2.5 h-2.5 rounded-full mt-3"
-                style={{ backgroundColor: p.lid }}
-              />
+              <div className="w-2.5 h-2.5 rounded-full mt-3" style={{ backgroundColor: p.lid }} />
             </motion.button>
           ))}
         </motion.div>

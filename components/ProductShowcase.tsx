@@ -5,49 +5,58 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const products = [
   {
-    slug:       "raspberries-milk",
-    name:       "Raspberries",
-    chocolate:  "White & Milk Chocolate",
-    lid:        "#E2375C",
-    image:      "/products/raspberries-milk.png",
-    tagline:    "Bright, tangy raspberries inside a creamy white and milk chocolate shell.",
-    weight:     "150g",
+    slug:      "raspberries-milk",
+    name:      "Raspberries",
+    chocolate: "White & Milk Chocolate",
+    lid:       "#E2375C",
+    image:     "/products/petel.jpg",
+    tagline:   "Bright, tangy raspberries inside a creamy white and milk chocolate shell.",
+    weight:    "150g",
   },
   {
-    slug:       "raspberries-dark",
-    name:       "Raspberries Dark",
-    chocolate:  "White & Dark Chocolate",
-    lid:        "#8B2252",
-    image:      "/products/raspberries-dark.png",
-    tagline:    "The same juicy raspberry, finished with a bold Ecuadorian dark chocolate.",
-    weight:     "150g",
+    slug:      "raspberries-dark",
+    name:      "Raspberries Dark",
+    chocolate: "White & Dark Chocolate",
+    lid:       "#8B2252",
+    image:     "/products/pettel.jpg",
+    tagline:   "The same juicy raspberry, finished with a bold Ecuadorian dark chocolate.",
+    weight:    "150g",
   },
   {
-    slug:       "blueberries",
-    name:       "Blueberries",
-    chocolate:  "White & Milk Chocolate",
-    lid:        "#6B4FA8",
-    image:      "/products/blueberries.png",
-    tagline:    "Plump frozen blueberries enrobed in smooth white and velvety milk chocolate.",
-    weight:     "150g",
+    slug:      "blueberries",
+    name:      "Blueberries",
+    chocolate: "White & Milk Chocolate",
+    lid:       "#6B4FA8",
+    image:     "/products/blue.jpg",
+    tagline:   "Plump frozen blueberries enrobed in smooth white and velvety milk chocolate.",
+    weight:    "150g",
   },
   {
-    slug:       "passion-fruit",
-    name:       "Passion Fruit",
-    chocolate:  "White & Milk Chocolate",
-    lid:        "#7C3FA0",
-    image:      "/products/passion-fruit.png",
-    tagline:    "Tropical passion fruit, tart and fragrant, coated in premium Ecuadorian milk chocolate.",
-    weight:     "150g",
+    slug:      "passion-fruit",
+    name:      "Passion Fruit",
+    chocolate: "White & Milk Chocolate",
+    lid:       "#7C3FA0",
+    image:     "/products/passion.jpg",
+    tagline:   "Tropical passion fruit, tart and fragrant, coated in premium Ecuadorian milk chocolate.",
+    weight:    "150g",
   },
   {
-    slug:       "banana",
-    name:       "Banana",
-    chocolate:  "White & Dark Chocolate",
-    lid:        "#A07840",
-    image:      "/products/banana.png",
-    tagline:    "Sweet frozen banana with a rich white layer and a deep dark chocolate finish.",
-    weight:     "150g",
+    slug:      "banana",
+    name:      "Banana",
+    chocolate: "White & Dark Chocolate",
+    lid:       "#A07840",
+    image:     "/products/banana.jpg",
+    tagline:   "Sweet frozen banana with a rich white layer and a deep dark chocolate finish.",
+    weight:    "150g",
+  },
+  {
+    slug:      "strawberries",
+    name:      "Strawberries",
+    chocolate: "White & Milk Chocolate",
+    lid:       "#CC2222",
+    image:     "/products/tot.jpg",
+    tagline:   "Juicy whole strawberries dipped in smooth white and premium Ecuadorian milk chocolate.",
+    weight:    "150g",
   },
 ];
 
@@ -248,7 +257,7 @@ export default function ProductShowcase() {
 
         {/* Bottom mini card grid */}
         <motion.div
-          className="mt-20 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"
+          className="mt-20 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

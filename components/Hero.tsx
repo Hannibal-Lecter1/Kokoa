@@ -33,7 +33,7 @@ function HeroProductVisual() {
 
   return (
     <motion.img
-      src="/products/raspberries-milk.png"
+      src="/products/petel.jpg"
       alt="Kokoa Raspberries — Frozen Raspberries Coated with Premium White & Milk Chocolate"
       className="w-72 md:w-96 lg:w-[420px] xl:w-[480px] object-contain drop-shadow-2xl"
       animate={{ y: [0, -12, 0] }}

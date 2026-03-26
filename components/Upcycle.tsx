@@ -5,40 +5,27 @@ import { Layers3, Droplets, Leaf } from "lucide-react";
 
 const pillars = [
   {
-    Icon:       Layers3,
-    stat:       "100%",
-    statLabel:  "Local Processing",
-    title:      "The Bean",
-    description:
-      "Arriba Nacional seeds are fermented in hand-crafted wooden boxes, sun-dried, then roasted and conched entirely within Ecuador. Every step from farm to final temper stays in Guayaquil, keeping the highest margins of value in the country of origin.",
+    Icon:        Layers3,
+    title:       "The Bean",
+    description: "The cacao seeds are fermented, sun-dried, roasted, and conched entirely in Guayaquil. The chocolate in every Kokoa tub never leaves Ecuador until it's finished.",
+    stat:        "100%",
+    statLabel:   "Made in Ecuador",
   },
   {
-    Icon:       Droplets,
-    stat:       "0",
-    statLabel:  "Artificial Sweeteners",
-    title:      "The Pulp",
-    description:
-      "The sweet, tropical mucilage surrounding the seeds — reminiscent of lychee and white peach — is cold-pressed into juice and reduced into a natural syrup. This replaces refined cane sugar in our formulations, delivering authentic cacao sweetness with zero artificial inputs.",
+    Icon:        Droplets,
+    title:       "The Pulp",
+    description: "The sweet white mucilage around each seed — usually discarded — is pressed into juice and reduced into a natural sweetening syrup used in our recipes instead of refined sugar.",
+    stat:        "0",
+    statLabel:   "Refined sugar added",
   },
   {
-    Icon:       Leaf,
-    stat:       "10M+",
-    statLabel:  "Tons Saved Annually (industry)",
-    title:      "The Husk",
-    description:
-      "The fibrous cascara pod — which constitutes 70–80% of the fruit by weight and is traditionally left to rot — is dried, milled, and pulverized into a nutrient-dense flour rich in dietary fiber, lignin, and bioactive antioxidants. Waste becomes value.",
+    Icon:        Leaf,
+    title:       "The Husk",
+    description: "The pod shell — 70–80% of the fruit by weight, typically left to rot — is dried and milled into a fibre-rich flour. Nothing from the cacao plant ends up as waste.",
+    stat:        "10M+",
+    statLabel:   "Tonnes wasted globally per year — we're changing that",
   },
 ];
-
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.18 } },
-};
-
-const itemVariants = {
-  hidden:  { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: "easeOut" } },
-};
 
 export default function Upcycle() {
   return (
@@ -47,92 +34,69 @@ export default function Upcycle() {
 
         {/* Header */}
         <motion.div
-          className="text-center mb-20"
-          initial={{ opacity: 0, y: 40 }}
+          className="mb-16"
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <span className="font-sans text-xs tracking-[0.35em] uppercase text-white/50 block mb-5">
-            Our Ecological Promise
+          <span className="font-sans text-xs tracking-[0.35em] uppercase text-white/45 block mb-4">
+            The whole fruit
           </span>
-          <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl text-white leading-tight mb-6">
-            Nothing Wasted.
+          <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl text-white leading-tight">
+            Nothing wasted.
             <br />
-            <em className="not-italic italic">Everything Gained.</em>
+            <span className="italic">Everything used.</span>
           </h2>
-          <p className="font-sans text-white/70 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-            We upcycle 100% of the cacao fruit to protect our planet, reduce
-            carbon emissions, and elevate your palate.
+          <p className="font-sans text-white/65 text-lg mt-5 max-w-xl leading-relaxed">
+            Most chocolate uses only the seeds — around 20% of the fruit.
+            We use all of it.
           </p>
         </motion.div>
 
-        {/* Impact stat banner */}
-        <motion.div
-          className="flex justify-center mb-20"
-          initial={{ opacity: 0, scale: 0.92 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-        >
-          <div className="bg-white/10 border border-white/20 backdrop-blur-sm rounded-2xl px-10 md:px-16 py-10 text-center max-w-xl w-full">
-            <p className="font-serif text-7xl md:text-8xl text-white font-bold leading-none mb-3">
-              3.5B
-            </p>
-            <p className="font-sans text-white/60 text-sm tracking-[0.2em] uppercase leading-relaxed">
-              Trees worth of CO₂ saved annually
-              <br />
-              if the global cacao industry utilized the entire fruit
-            </p>
-          </div>
-        </motion.div>
-
         {/* 3-pillar grid */}
-        <motion.div
-          className="grid md:grid-cols-3 gap-6"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
-        >
-          {pillars.map(({ Icon, stat, statLabel, title, description }) => (
+        <div className="grid md:grid-cols-3 gap-6 mb-16">
+          {pillars.map(({ Icon, stat, statLabel, title, description }, i) => (
             <motion.div
               key={title}
-              variants={itemVariants}
-              className="bg-white/10 border border-white/20 backdrop-blur-sm rounded-2xl p-8 flex flex-col"
+              className="bg-white/10 border border-white/15 rounded-2xl p-8"
+              initial={{ opacity: 0, y: 36 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: i * 0.14 }}
             >
-              {/* Icon badge */}
-              <div className="w-14 h-14 bg-kokoa-berry rounded-xl flex items-center justify-center mb-6 flex-shrink-0">
-                <Icon className="w-7 h-7 text-white" />
+              <div className="w-12 h-12 bg-kokoa-berry rounded-xl flex items-center justify-center mb-6">
+                <Icon className="w-6 h-6 text-white" />
               </div>
-
-              {/* Stat */}
               <p className="font-serif text-5xl text-white font-bold leading-none mb-1">
                 {stat}
               </p>
-              <p className="font-sans text-white/40 text-xs tracking-[0.2em] uppercase mb-7">
+              <p className="font-sans text-white/35 text-xs tracking-widest uppercase mb-7">
                 {statLabel}
               </p>
-
-              {/* Content */}
-              <h3 className="font-serif text-2xl text-white mb-4">{title}</h3>
-              <p className="font-sans text-white/65 leading-relaxed text-sm flex-1">
+              <h3 className="font-serif text-2xl text-white mb-3">{title}</h3>
+              <p className="font-sans text-white/60 leading-relaxed text-sm">
                 {description}
               </p>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
-        {/* Bottom declaration */}
-        <motion.p
-          className="font-sans text-center text-white/30 text-xs tracking-[0.25em] uppercase mt-16"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+        {/* Callout stat */}
+        <motion.div
+          className="bg-white/8 border border-white/15 rounded-2xl px-8 py-10 text-center max-w-2xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.7 }}
         >
-          Preservative-Free · No Artificial Colors · Gluten-Free · 100% Upcycled Cacao
-        </motion.p>
+          <p className="font-serif text-6xl md:text-7xl text-white font-bold mb-3">3.5B</p>
+          <p className="font-sans text-white/50 text-sm tracking-wide leading-relaxed">
+            Trees' worth of CO₂ emissions could be avoided every year
+            <br />
+            if the global cacao industry used the whole fruit.
+          </p>
+        </motion.div>
       </div>
     </section>
   );

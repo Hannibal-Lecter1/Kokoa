@@ -3,132 +3,133 @@
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
-const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1606312619070-d48b4c652a52?auto=format&fit=crop&w=1920&q=80";
-
 export default function Hero() {
   const scrollToNext = () =>
-    document.getElementById("the-perfect-bite")?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById("the-range")?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
-      {/* Background image */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={HERO_IMAGE}
-        alt="Premium dark chocolate pouring over fresh raspberries"
-        className="absolute inset-0 w-full h-full object-cover object-center"
-        aria-hidden="true"
-      />
+    <section className="relative min-h-screen w-full bg-kokoa-dark flex items-center overflow-hidden">
 
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-kokoa-dark/75 via-kokoa-dark/55 to-kokoa-dark/85" />
-
-      {/* Subtle parallax decoration */}
-      <motion.div
-        className="absolute inset-0 opacity-20"
+      {/* Background texture — subtle radial glow */}
+      <div
+        className="absolute inset-0 opacity-30 pointer-events-none"
         style={{
-          backgroundImage:
-            "radial-gradient(ellipse at 60% 40%, #E2375C 0%, transparent 60%)",
+          background:
+            "radial-gradient(ellipse 80% 60% at 70% 50%, #E2375C22 0%, transparent 70%), radial-gradient(ellipse 60% 80% at 20% 80%, #D59F8030 0%, transparent 60%)",
         }}
-        animate={{ scale: [1, 1.05, 1], opacity: [0.15, 0.25, 0.15] }}
-        transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
       />
 
-      {/* Content */}
-      <div className="relative z-10 text-center max-w-5xl mx-auto px-6">
-        {/* Eyebrow */}
-        <motion.span
-          className="inline-block font-sans text-xs md:text-sm tracking-[0.35em] uppercase text-kokoa-berry mb-6"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-        >
-          Ecuadorian Chocolate · Bean to Cup · 100% Upcycled Cacao
-        </motion.span>
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-8 items-center py-32 lg:py-0 min-h-screen">
 
-        {/* Headline */}
-        <motion.h1
-          className="font-serif text-5xl md:text-7xl lg:text-8xl text-white leading-[1.1] mb-8"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.5 }}
-        >
-          Conscious{" "}
-          <span className="italic text-kokoa-berry">Indulgence.</span>
-          <br />
-          Crafted at the Source.
-        </motion.h1>
+        {/* Left — copy */}
+        <div className="order-2 lg:order-1">
+          <motion.span
+            className="font-sans text-xs tracking-[0.35em] uppercase text-kokoa-berry block mb-6"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            Ecuadorian Chocolate · Bean to Cup · 150g
+          </motion.span>
 
-        {/* Sub-headline */}
-        <motion.p
-          className="font-sans text-base md:text-xl text-white/75 max-w-2xl mx-auto mb-12 leading-relaxed"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.75 }}
-        >
-          Experience the perfect bite. 100% upcycled Ecuadorian cacao enrobing
-          vibrant, fresh-frozen fruit — farmed and finished entirely in Guayaquil.
-        </motion.p>
+          <motion.h1
+            className="font-serif text-5xl md:text-6xl lg:text-7xl text-white leading-[1.08] mb-7"
+            initial={{ opacity: 0, y: 36 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.85, delay: 0.38 }}
+          >
+            Frozen fruit.
+            <br />
+            <span className="italic text-kokoa-berry">Ecuadorian</span>
+            <br />
+            chocolate.
+          </motion.h1>
 
-        {/* CTA */}
-        <motion.button
-          onClick={scrollToNext}
-          className="font-sans text-xs md:text-sm tracking-[0.25em] uppercase text-white border border-kokoa-berry px-10 py-4 hover:bg-kokoa-berry transition-all duration-400"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 1 }}
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.98 }}
+          <motion.p
+            className="font-sans text-white/65 text-lg leading-relaxed max-w-md mb-10"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, delay: 0.56 }}
+          >
+            Whole frozen fruit. Two layers of premium chocolate made
+            from bean to cup in Guayaquil, Ecuador.
+            No shortcuts. No fillers. Just fruit and real chocolate.
+          </motion.p>
+
+          <motion.div
+            className="flex flex-wrap gap-4"
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.72 }}
+          >
+            <motion.button
+              onClick={scrollToNext}
+              className="font-sans text-xs tracking-[0.22em] uppercase text-white border border-kokoa-berry px-9 py-4 hover:bg-kokoa-berry transition-all duration-300"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              See the range
+            </motion.button>
+            <motion.button
+              onClick={() => document.getElementById("partner")?.scrollIntoView({ behavior: "smooth" })}
+              className="font-sans text-xs tracking-[0.22em] uppercase text-white/50 px-6 py-4 hover:text-white transition-colors duration-300"
+              whileHover={{ scale: 1.02 }}
+            >
+              Partner with us →
+            </motion.button>
+          </motion.div>
+
+          {/* Trust badges */}
+          <motion.div
+            className="flex flex-wrap gap-5 mt-10"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1, duration: 0.7 }}
+          >
+            {["Preservative-free", "No artificial colours", "Gluten-free", "Bean to cup"].map((badge) => (
+              <span
+                key={badge}
+                className="font-sans text-xs text-white/35 tracking-wide border border-white/10 rounded-full px-3 py-1"
+              >
+                {badge}
+              </span>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Right — hero product image */}
+        <motion.div
+          className="order-1 lg:order-2 flex justify-center lg:justify-end"
+          initial={{ opacity: 0, scale: 0.88, y: 30 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
         >
-          Discover the Journey
-        </motion.button>
+          <motion.img
+            src="/products/raspberries-milk.png"
+            alt="Kokoa Raspberries — Frozen Raspberries Coated with Premium White & Milk Chocolate"
+            className="w-72 md:w-96 lg:w-[420px] xl:w-[480px] object-contain drop-shadow-2xl"
+            animate={{ y: [0, -12, 0] }}
+            transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
+          />
+        </motion.div>
       </div>
 
-      {/* Animated scroll indicator */}
+      {/* Scroll indicator */}
       <motion.button
         onClick={scrollToNext}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50 hover:text-kokoa-berry transition-colors duration-300"
+        className="absolute bottom-9 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30 hover:text-kokoa-berry transition-colors duration-300"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.4, duration: 0.8 }}
+        transition={{ delay: 1.3 }}
         aria-label="Scroll down"
       >
-        <span className="font-sans text-xs tracking-[0.25em] uppercase">Scroll</span>
         <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+          animate={{ y: [0, 7, 0] }}
+          transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
         >
           <ChevronDown className="w-5 h-5" />
         </motion.div>
       </motion.button>
-
-      {/* Flavor color chips — bottom right decoration */}
-      <motion.div
-        className="absolute bottom-10 right-6 hidden lg:flex flex-col gap-2 items-end"
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 1.6, duration: 0.7 }}
-      >
-        <span className="font-sans text-xs tracking-widest uppercase text-white/30 mb-1">
-          Flavours
-        </span>
-        {[
-          { label: "Raspberries",   color: "#E2375C" },
-          { label: "Blueberries",   color: "#6B4FBB" },
-          { label: "Passion Fruit", color: "#C2185B" },
-          { label: "Banana",        color: "#8D6E63" },
-          { label: "Strawberries",  color: "#C62828" },
-        ].map((f) => (
-          <div key={f.label} className="flex items-center gap-2">
-            <span className="font-sans text-xs text-white/40">{f.label}</span>
-            <span
-              className="w-3 h-3 rounded-full flex-shrink-0"
-              style={{ backgroundColor: f.color }}
-            />
-          </div>
-        ))}
-      </motion.div>
     </section>
   );
 }

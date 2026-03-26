@@ -6,43 +6,43 @@ import { motion, useScroll, useTransform } from "framer-motion";
 const cards = [
   {
     number:      "01",
-    title:       "The Volcanic Soil",
-    subtitle:    "Guayas River Region, Ecuador",
+    tag:         "The origin",
+    title:       "5,000 years of cacao",
+    subtitle:    "Ecuador",
     description:
-      "Forged over millennia by volcanic activity, the mineral-rich soils of Ecuador's Guayas River basin provide the ideal substrate for the Arriba Nacional cacao tree. Magnesium supports photosynthesis, potassium regulates water retention, and calcium strengthens root systems — together creating a terroir unlike any other on Earth.",
-    image:
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80",
-    tag: "Terroir",
+      "Cacao was first domesticated in Ecuador — not Mesoamerica. The Mayo-Chinchipe people were cultivating it over 5,000 years ago. Ecuador is the original home of chocolate, and that heritage is in every Kokoa tub.",
+    bg: "#3E2723",
+    text: "#F8F3EB",
   },
   {
     number:      "02",
-    title:       "The Arriba Nacional Bean",
-    subtitle:    "5,000 Years of Heritage",
+    tag:         "The bean",
+    title:       "Arriba Nacional",
+    subtitle:    "Fine-flavour cacao",
     description:
-      "Recent archaeological discoveries in the Mayo-Chinchipe region confirm cacao was first domesticated in Ecuador over 5,000 years ago — pre-dating Mesoamerican use. The Arriba Nacional variety is a genetically distinct, fine-flavor bean prized by the world's best chocolatiers for its complex floral aroma, herbaceous finishing notes, and remarkable lack of bitterness.",
-    image:
-      "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=900&q=80",
-    tag: "Heritage",
+      "Ecuador grows Arriba Nacional — one of the world's only fine-flavour cacao varieties. It's floral, complex, and not bitter. The world's best chocolatiers source it specifically. We grow it, process it, and coat your fruit in it.",
+    bg: "#4A5D23",
+    text: "#F8F3EB",
   },
   {
     number:      "03",
-    title:       "The Local Farmers",
-    subtitle:    "Direct Trade & Community Empowerment",
+    tag:         "The process",
+    title:       "Bean to cup in Guayaquil",
+    subtitle:    "No export. No middlemen.",
     description:
-      "Kokoa actively rejects the colonial-era bulk-export model. By partnering directly with local farming cooperatives in Ecuador, we ensure farmers receive full and fair value for their entire harvest — not merely the beans. This direct-trade approach empowers communities, preserves genetic biodiversity, and builds generational prosperity within Ecuador.",
-    image:
-      "https://images.unsplash.com/photo-1596797038530-2c107229654b?auto=format&fit=crop&w=900&q=80",
-    tag: "Community",
+      "Fermenting, roasting, conching, tempering, enrobing — it all happens in Guayaquil. We don't ship raw beans to Europe to be turned into chocolate. We make the chocolate here, where the cacao grows. The value stays in Ecuador.",
+    bg: "#D59F80",
+    text: "#3E2723",
   },
   {
     number:      "04",
-    title:       "Bean to Cup in Guayaquil",
-    subtitle:    "Local Manufacturing. Global Impact.",
+    tag:         "The product",
+    title:       "Whole fruit. Real chocolate.",
+    subtitle:    "150g per tub",
     description:
-      "Every stage of production — from fermentation in hand-crafted wooden boxes and open-air sun-drying to precision roasting, conching, and final enrobing — occurs entirely in Guayaquil, Ecuador. By manufacturing locally, Kokoa keeps the highest value-added margins in the country of origin, drastically cuts shipping emissions, and guarantees unparalleled quality at every step.",
-    image:
-      "https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=900&q=80",
-    tag: "Bean to Cup",
+      "The fruit goes in frozen. Two layers of chocolate go on outside. That's it. No artificial colours, no preservatives, no flavourings. The ingredients list is short because the product is honest.",
+    bg: "#E2375C",
+    text: "#ffffff",
   },
 ];
 
@@ -54,9 +54,6 @@ export default function Origin() {
     offset: ["start start", "end end"],
   });
 
-  // Move the cards container left as the user scrolls down through the tall section.
-  // With 4 cards of ~38vw each, we need to translate ~3 card-widths to the left.
-  // "-75%" of the flex container's own width ≈ 3 cards, landing on card 4.
   const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
 
   return (
@@ -66,88 +63,86 @@ export default function Origin() {
       className="relative bg-kokoa-husk"
       style={{ height: "450vh" }}
     >
-      {/* Sticky viewport */}
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
 
-        {/* Section header */}
+        {/* Header */}
         <div className="px-6 md:px-12 mb-10 flex-shrink-0">
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.75 }}
+            transition={{ duration: 0.7 }}
           >
-            <span className="font-sans text-xs tracking-[0.35em] uppercase text-kokoa-dark/45 block mb-3">
-              Our Roots
+            <span className="font-sans text-xs tracking-[0.35em] uppercase text-kokoa-dark/40 block mb-3">
+              Ecuadorian roots
             </span>
             <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-kokoa-dark leading-tight">
-              From Ecuador.{" "}
-              <span className="italic text-kokoa-dark/60">For the World.</span>
+              Why Ecuador
+              <span className="italic text-kokoa-dark/50"> matters.</span>
             </h2>
           </motion.div>
         </div>
 
-        {/* Horizontal slider */}
+        {/* Horizontal cards */}
         <div className="overflow-hidden flex-shrink-0">
-          <motion.div
-            className="flex gap-5 px-6 md:px-12"
-            style={{ x }}
-          >
+          <motion.div className="flex gap-5 px-6 md:px-12" style={{ x }}>
             {cards.map((card, i) => (
               <div
                 key={i}
-                className="flex-shrink-0 w-[80vw] md:w-[46vw] lg:w-[38vw] bg-white rounded-2xl overflow-hidden shadow-xl flex flex-col"
+                className="flex-shrink-0 w-[80vw] md:w-[44vw] lg:w-[36vw] rounded-2xl overflow-hidden shadow-xl flex flex-col"
+                style={{ backgroundColor: card.bg }}
               >
-                {/* Image */}
-                <div className="relative h-52 md:h-64 overflow-hidden flex-shrink-0">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={card.image}
-                    alt={card.title}
-                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                  />
-                  {/* Tag */}
-                  <div className="absolute top-4 left-4">
-                    <span className="font-sans text-xs tracking-[0.25em] uppercase bg-kokoa-dark/80 text-white px-3 py-1 rounded-full">
+                <div className="p-8 flex flex-col flex-1">
+                  <div className="flex items-center justify-between mb-8">
+                    <span
+                      className="font-sans text-xs tracking-[0.3em] uppercase opacity-50"
+                      style={{ color: card.text }}
+                    >
                       {card.tag}
                     </span>
+                    <span
+                      className="font-serif text-5xl font-bold opacity-15"
+                      style={{ color: card.text }}
+                    >
+                      {card.number}
+                    </span>
                   </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-7 flex flex-col flex-1">
-                  <span className="font-sans text-xs tracking-[0.4em] text-kokoa-berry uppercase">
-                    {card.number}
-                  </span>
-                  <h3 className="font-serif text-2xl md:text-3xl text-kokoa-dark mt-2 mb-1 leading-tight">
+                  <h3
+                    className="font-serif text-3xl md:text-4xl leading-tight mb-2"
+                    style={{ color: card.text }}
+                  >
                     {card.title}
                   </h3>
-                  <p className="font-sans text-xs tracking-[0.2em] text-kokoa-sage uppercase mb-5">
+                  <p
+                    className="font-sans text-xs tracking-[0.2em] uppercase mb-6 opacity-50"
+                    style={{ color: card.text }}
+                  >
                     {card.subtitle}
                   </p>
-                  <p className="font-sans text-kokoa-dark/65 leading-relaxed text-sm flex-1">
+                  <p
+                    className="font-sans leading-relaxed text-sm opacity-70 flex-1"
+                    style={{ color: card.text }}
+                  >
                     {card.description}
                   </p>
                 </div>
               </div>
             ))}
-
-            {/* Spacer card — ensures last card doesn't sit flush at the edge */}
             <div className="flex-shrink-0 w-6 md:w-12" aria-hidden="true" />
           </motion.div>
         </div>
 
-        {/* Progress indicator */}
+        {/* Progress bar */}
         <div className="px-6 md:px-12 mt-8 flex items-center gap-4">
-          <p className="font-sans text-xs tracking-[0.25em] uppercase text-kokoa-dark/35">
+          <p className="font-sans text-xs tracking-widest uppercase text-kokoa-dark/30">
             Scroll to explore
           </p>
           <div className="flex gap-2">
             {cards.map((_, i) => (
-              <motion.div
+              <div
                 key={i}
-                className="h-0.5 bg-kokoa-dark/20 rounded-full overflow-hidden"
-                style={{ width: "40px" }}
+                className="h-px bg-kokoa-dark/15 rounded-full overflow-hidden"
+                style={{ width: "36px" }}
               >
                 <motion.div
                   className="h-full bg-kokoa-dark rounded-full origin-left"
@@ -159,7 +154,7 @@ export default function Origin() {
                     ),
                   }}
                 />
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

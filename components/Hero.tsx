@@ -19,27 +19,31 @@ function HeroProductVisual() {
   useEffect(() => {
     const id = setInterval(() => {
       setIndex((i) => (i + 1) % products.length);
-    }, 3500);
+    }, 4000);
     return () => clearInterval(id);
   }, []);
 
   return (
     <div className="relative w-[340px] md:w-[460px] lg:w-[560px] xl:w-[630px] h-[400px] md:h-[520px] lg:h-[620px] flex items-center justify-center">
       <AnimatePresence mode="wait">
-        <motion.img
-          key={products[index].src}
-          src={products[index].src}
-          alt={products[index].alt}
-          className="absolute w-full h-full object-contain drop-shadow-2xl"
-          initial={{ opacity: 0, scale: 0.92, y: 16 }}
-          animate={{ opacity: 1, scale: 1, y: [0, -14, 0] }}
-          exit={{ opacity: 0, scale: 0.94, y: -12 }}
-          transition={{
-            opacity: { duration: 0.45 },
-            scale: { duration: 0.45 },
-            y: { repeat: Infinity, duration: 5, ease: "easeInOut", delay: 0.45 },
-          }}
-        />
+        {/* Wrapper handles fade + scale in/out */}
+        <motion.div
+          key={index}
+          className="absolute w-full h-full flex items-center justify-center"
+          initial={{ opacity: 0, scale: 0.93 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.95 }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
+        >
+          {/* Inner img handles float loop independently */}
+          <motion.img
+            src={products[index].src}
+            alt={products[index].alt}
+            className="w-full h-full object-contain drop-shadow-2xl"
+            animate={{ y: [0, -14, 0] }}
+            transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
+          />
+        </motion.div>
       </AnimatePresence>
 
       {/* Dot indicators */}

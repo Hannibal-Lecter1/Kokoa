@@ -208,9 +208,9 @@ export default function Footer() {
           {/* Mascot logo */}
           <div className="flex-shrink-0">
             <img
-              src="/brand/mascot.png"
+              src="/brand/mascot-transparent.png"
               alt="Kokoa"
-              className="h-20 w-auto object-contain"
+              className="h-32 w-auto object-contain"
               onError={(e) => {
                 const t = e.currentTarget;
                 t.style.display = "none";

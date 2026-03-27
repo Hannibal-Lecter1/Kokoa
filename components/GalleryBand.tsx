@@ -55,7 +55,7 @@ function PhotoBand({
 export function BandLids() {
   return (
     <PhotoBand
-      src="/lifestyle/lids-pink.jpg"
+      src="/lifestyle/lids-pink.jpeg"
       alt="All six Kokoa flavours — lid flat-lay"
       height="h-56 md:h-72 lg:h-80"
       overlayColor="#1a0a08"
@@ -78,7 +78,7 @@ export function BandLids() {
 export function BandStacked() {
   return (
     <PhotoBand
-      src="/lifestyle/stacked-red.jpg"
+      src="/lifestyle/stacked-red.jpeg"
       alt="Kokoa tubs stacked — Guayaquil, Ecuador"
       height="h-64 md:h-80 lg:h-96"
       overlayColor="#1a0a08"

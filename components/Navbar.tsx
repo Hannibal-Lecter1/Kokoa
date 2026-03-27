@@ -44,7 +44,7 @@ export default function Navbar() {
             aria-label="Kokoa — back to top"
           >
             <img
-              src="/brand/mascot.png"
+              src="/brand/logo.png"
               alt="Kokoa"
               className="h-10 w-auto object-contain"
               onError={(e) => {

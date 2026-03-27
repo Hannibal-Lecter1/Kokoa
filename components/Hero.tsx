@@ -52,7 +52,7 @@ export default function Hero() {
 
       {/* Background — scattered tubs lifestyle photo */}
       <img
-        src="/lifestyle/scattered.jpg"
+        src="/lifestyle/scattered.jpeg"
         alt=""
         aria-hidden="true"
         className="absolute inset-0 w-full h-full object-cover object-center opacity-0 transition-opacity duration-700"

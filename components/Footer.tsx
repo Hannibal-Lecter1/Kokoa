@@ -22,6 +22,11 @@ export default function Footer() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const subject = encodeURIComponent(`Kokoa B2B Inquiry — ${form.company}`);
+    const body = encodeURIComponent(
+      `Company: ${form.company}\nName: ${form.name}\nEmail: ${form.email}\n\n${form.message}`
+    );
+    window.location.href = `mailto:kevin@kokoafruits.com?subject=${subject}&body=${body}`;
     setSubmitted(true);
   };
 
@@ -80,7 +85,9 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-3 text-kokoa-cream/40">
                 <Mail className="w-4 h-4 flex-shrink-0" />
-                <span className="font-sans text-sm">hello@kokoa.ec</span>
+                <a href="mailto:kevin@kokoafruits.com" className="hover:text-kokoa-berry transition-colors duration-300">
+                  kevin@kokoafruits.com
+                </a>
               </div>
             </div>
           </motion.div>

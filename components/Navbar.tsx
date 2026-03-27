@@ -43,19 +43,16 @@ export default function Navbar() {
             className="flex items-center hover:opacity-80 transition-opacity duration-300"
             aria-label="Kokoa — back to top"
           >
-            {/* Cream badge keeps the white-background logo clean on any bg */}
-            <span className="bg-kokoa-cream rounded-md px-3 py-1 inline-flex items-center">
-              <img
-                src="/brand/logo.jpeg"
-                alt="Kokoa"
-                className="h-7 w-auto object-contain"
-                onError={(e) => {
-                  const t = e.currentTarget;
-                  (t.parentElement as HTMLElement).style.display = "none";
-                  t.parentElement?.nextElementSibling?.removeAttribute("style");
-                }}
-              />
-            </span>
+            <img
+              src="/brand/logo.png"
+              alt="Kokoa"
+              className="h-10 w-auto object-contain"
+              onError={(e) => {
+                const t = e.currentTarget;
+                t.style.display = "none";
+                t.nextElementSibling?.removeAttribute("style");
+              }}
+            />
             <span
               className="font-serif text-2xl font-bold text-white tracking-[0.3em]"
               style={{ display: "none" }}

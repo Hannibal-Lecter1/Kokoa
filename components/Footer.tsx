@@ -205,20 +205,18 @@ export default function Footer() {
       {/* ── Bottom bar ──────────────────────────────── */}
       <div className="border-t border-white/8">
         <div className="max-w-7xl mx-auto px-6 py-7 flex flex-col md:flex-row items-center justify-between gap-5">
-          {/* Mascot logo — cream circle keeps white bg intentional on dark footer */}
+          {/* Mascot logo */}
           <div className="flex-shrink-0">
-            <span className="bg-kokoa-cream rounded-2xl p-3 inline-flex items-center justify-center">
-              <img
-                src="/brand/mascot.png"
-                alt="Kokoa"
-                className="h-28 w-auto object-contain"
-                onError={(e) => {
-                  const t = e.currentTarget;
-                  (t.parentElement as HTMLElement).style.display = "none";
-                  t.parentElement?.nextElementSibling?.removeAttribute("style");
-                }}
-              />
-            </span>
+            <img
+              src="/brand/mascot-clean.png"
+              alt="Kokoa"
+              className="h-32 w-auto object-contain"
+              onError={(e) => {
+                const t = e.currentTarget;
+                t.style.display = "none";
+                t.nextElementSibling?.removeAttribute("style");
+              }}
+            />
             <span
               className="font-serif text-2xl tracking-[0.3em] text-kokoa-cream"
               style={{ display: "none" }}

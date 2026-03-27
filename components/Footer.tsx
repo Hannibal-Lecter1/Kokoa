@@ -205,10 +205,25 @@ export default function Footer() {
       {/* ── Bottom bar ──────────────────────────────── */}
       <div className="border-t border-white/8">
         <div className="max-w-7xl mx-auto px-6 py-7 flex flex-col md:flex-row items-center justify-between gap-5">
-          {/* Logo */}
-          <span className="font-serif text-2xl tracking-[0.3em] text-kokoa-cream">
-            KOKOA
-          </span>
+          {/* Mascot logo */}
+          <div className="flex-shrink-0">
+            <img
+              src="/brand/mascot.png"
+              alt="Kokoa"
+              className="h-20 w-auto object-contain"
+              onError={(e) => {
+                const t = e.currentTarget;
+                t.style.display = "none";
+                t.nextElementSibling?.removeAttribute("style");
+              }}
+            />
+            <span
+              className="font-serif text-2xl tracking-[0.3em] text-kokoa-cream"
+              style={{ display: "none" }}
+            >
+              KOKOA
+            </span>
+          </div>
 
           {/* Central blurb */}
           <p className="font-sans text-xs text-kokoa-cream/30 text-center leading-relaxed">

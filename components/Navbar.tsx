@@ -40,9 +40,25 @@ export default function Navbar() {
           {/* Logo */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="font-serif text-2xl font-bold text-white tracking-[0.3em] hover:text-kokoa-berry transition-colors duration-300"
+            className="flex items-center hover:opacity-80 transition-opacity duration-300"
+            aria-label="Kokoa — back to top"
           >
-            KOKOA
+            <img
+              src="/brand/mascot.png"
+              alt="Kokoa"
+              className="h-10 w-auto object-contain"
+              onError={(e) => {
+                const t = e.currentTarget;
+                t.style.display = "none";
+                t.nextElementSibling?.removeAttribute("style");
+              }}
+            />
+            <span
+              className="font-serif text-2xl font-bold text-white tracking-[0.3em]"
+              style={{ display: "none" }}
+            >
+              KOKOA
+            </span>
           </button>
 
           {/* Desktop links */}

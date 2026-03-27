@@ -50,14 +50,16 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen w-full bg-kokoa-dark flex items-center overflow-hidden">
 
-      {/* Background texture */}
-      <div
-        className="absolute inset-0 opacity-30 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 80% 60% at 70% 50%, #E2375C22 0%, transparent 70%), radial-gradient(ellipse 60% 80% at 20% 80%, #D59F8030 0%, transparent 60%)",
-        }}
+      {/* Background — scattered tubs lifestyle photo */}
+      <img
+        src="/lifestyle/scattered.jpg"
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-cover object-center opacity-0 transition-opacity duration-700"
+        onLoad={(e) => (e.currentTarget.style.opacity = "0.45")}
       />
+      {/* Dark overlay to keep text readable */}
+      <div className="absolute inset-0 bg-kokoa-dark/70" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-8 items-center py-32 lg:py-0 min-h-screen">
 

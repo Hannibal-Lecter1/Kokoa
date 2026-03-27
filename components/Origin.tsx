@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 
 const cards = [
   {
@@ -31,8 +30,8 @@ const cards = [
     subtitle:    "No export. No middlemen.",
     description:
       "Fermenting, roasting, conching, tempering, enrobing — it all happens in Guayaquil. We don't ship raw beans to Europe to be turned into chocolate. We make the chocolate here, where the cacao grows. The value stays in Ecuador.",
-    bg: "#D59F80",
-    text: "#3E2723",
+    bg: "#5C3317",
+    text: "#F8F3EB",
   },
   {
     number:      "04",
@@ -47,117 +46,73 @@ const cards = [
 ];
 
 export default function Origin() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
-
   return (
-    <section
-      id="origin"
-      ref={containerRef}
-      className="relative bg-kokoa-husk"
-      style={{ height: "450vh" }}
-    >
-      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
+    <section id="origin" className="bg-kokoa-husk py-20 px-6 md:px-12">
+      {/* Header */}
+      <motion.div
+        className="mb-12"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7 }}
+      >
+        <span className="font-sans text-xs tracking-[0.35em] uppercase text-kokoa-dark/40 block mb-3">
+          Ecuadorian roots
+        </span>
+        <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-kokoa-dark leading-tight">
+          Why Ecuador
+          <span className="italic text-kokoa-dark/50"> matters.</span>
+        </h2>
+      </motion.div>
 
-        {/* Header */}
-        <div className="px-6 md:px-12 mb-10 flex-shrink-0">
+      {/* 2×2 card grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-6xl">
+        {cards.map((card, i) => (
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            key={i}
+            className="rounded-2xl overflow-hidden shadow-xl"
+            style={{ backgroundColor: card.bg }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.6, delay: i * 0.1 }}
           >
-            <span className="font-sans text-xs tracking-[0.35em] uppercase text-kokoa-dark/40 block mb-3">
-              Ecuadorian roots
-            </span>
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-kokoa-dark leading-tight">
-              Why Ecuador
-              <span className="italic text-kokoa-dark/50"> matters.</span>
-            </h2>
-          </motion.div>
-        </div>
-
-        {/* Horizontal cards */}
-        <div className="overflow-hidden flex-shrink-0">
-          <motion.div className="flex gap-5 px-6 md:px-12" style={{ x }}>
-            {cards.map((card, i) => (
-              <div
-                key={i}
-                className="flex-shrink-0 w-[80vw] md:w-[44vw] lg:w-[36vw] rounded-2xl overflow-hidden shadow-xl flex flex-col"
-                style={{ backgroundColor: card.bg }}
-              >
-                <div className="p-8 flex flex-col flex-1">
-                  <div className="flex items-center justify-between mb-8">
-                    <span
-                      className="font-sans text-xs tracking-[0.3em] uppercase opacity-50"
-                      style={{ color: card.text }}
-                    >
-                      {card.tag}
-                    </span>
-                    <span
-                      className="font-serif text-5xl font-bold opacity-15"
-                      style={{ color: card.text }}
-                    >
-                      {card.number}
-                    </span>
-                  </div>
-                  <h3
-                    className="font-serif text-3xl md:text-4xl leading-tight mb-2"
-                    style={{ color: card.text }}
-                  >
-                    {card.title}
-                  </h3>
-                  <p
-                    className="font-sans text-xs tracking-[0.2em] uppercase mb-6 opacity-50"
-                    style={{ color: card.text }}
-                  >
-                    {card.subtitle}
-                  </p>
-                  <p
-                    className="font-sans leading-relaxed text-sm opacity-70 flex-1"
-                    style={{ color: card.text }}
-                  >
-                    {card.description}
-                  </p>
-                </div>
+            <div className="p-8 flex flex-col h-full">
+              <div className="flex items-center justify-between mb-8">
+                <span
+                  className="font-sans text-xs tracking-[0.3em] uppercase opacity-50"
+                  style={{ color: card.text }}
+                >
+                  {card.tag}
+                </span>
+                <span
+                  className="font-serif text-5xl font-bold opacity-15"
+                  style={{ color: card.text }}
+                >
+                  {card.number}
+                </span>
               </div>
-            ))}
-            <div className="flex-shrink-0 w-6 md:w-12" aria-hidden="true" />
-          </motion.div>
-        </div>
-
-        {/* Progress bar */}
-        <div className="px-6 md:px-12 mt-8 flex items-center gap-4">
-          <p className="font-sans text-xs tracking-widest uppercase text-kokoa-dark/30">
-            Scroll to explore
-          </p>
-          <div className="flex gap-2">
-            {cards.map((_, i) => (
-              <div
-                key={i}
-                className="h-px bg-kokoa-dark/15 rounded-full overflow-hidden"
-                style={{ width: "36px" }}
+              <h3
+                className="font-serif text-3xl md:text-4xl leading-tight mb-2"
+                style={{ color: card.text }}
               >
-                <motion.div
-                  className="h-full bg-kokoa-dark rounded-full origin-left"
-                  style={{
-                    scaleX: useTransform(
-                      scrollYProgress,
-                      [i / cards.length, (i + 1) / cards.length],
-                      [0, 1]
-                    ),
-                  }}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+                {card.title}
+              </h3>
+              <p
+                className="font-sans text-xs tracking-[0.2em] uppercase mb-6 opacity-50"
+                style={{ color: card.text }}
+              >
+                {card.subtitle}
+              </p>
+              <p
+                className="font-sans leading-relaxed text-sm opacity-70"
+                style={{ color: card.text }}
+              >
+                {card.description}
+              </p>
+            </div>
+          </motion.div>
+        ))}
       </div>
     </section>
   );

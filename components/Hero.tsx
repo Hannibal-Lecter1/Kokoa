@@ -1,45 +1,60 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
-function HeroProductVisual() {
-  const [failed, setFailed] = useState(false);
+const products = [
+  { src: "/products/petel.png",   alt: "Raspberries White & Milk Chocolate" },
+  { src: "/products/pettel.png",  alt: "Raspberries Dark Chocolate" },
+  { src: "/products/blue.png",    alt: "Blueberries Dark Chocolate" },
+  { src: "/products/passion.png", alt: "Passion Fruit Milk Chocolate" },
+  { src: "/products/banana.png",  alt: "Banana White Chocolate" },
+  { src: "/products/tot.png",     alt: "Strawberries Dark Chocolate" },
+];
 
-  if (failed) {
-    // Fallback: styled product mockup using brand colours
-    return (
-      <div className="w-64 md:w-80 lg:w-[360px] xl:w-[400px] flex flex-col items-center gap-4">
-        {/* Lid */}
-        <div className="w-48 md:w-56 h-10 rounded-full bg-[#E2375C] shadow-lg shadow-[#E2375C]/30 flex items-center justify-center">
-          <span className="font-sans text-white text-xs tracking-widest uppercase">KOKOA</span>
-        </div>
-        {/* Tub body */}
-        <div className="w-44 md:w-52 h-44 md:h-52 rounded-b-3xl rounded-t-xl bg-white shadow-2xl flex flex-col items-center justify-center gap-2 px-4">
-          <span className="font-serif text-kokoa-dark text-xl font-bold">Raspberries</span>
-          <div className="w-8 h-px bg-[#E2375C]" />
-          <span className="font-sans text-kokoa-dark/50 text-xs text-center leading-relaxed">
-            White &amp; Milk Chocolate
-          </span>
-          <span className="font-sans text-kokoa-dark/30 text-xs mt-2">150g</span>
-        </div>
-        <p className="font-sans text-white/25 text-xs tracking-widest uppercase">
-          Ecuadorian Chocolate · Bean to Cup
-        </p>
-      </div>
-    );
-  }
+function HeroProductVisual() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setIndex((i) => (i + 1) % products.length);
+    }, 3500);
+    return () => clearInterval(id);
+  }, []);
 
   return (
-    <motion.img
-      src="/products/petel.png"
-      alt="Kokoa Raspberries — Frozen Raspberries Coated with Premium White & Milk Chocolate"
-      className="w-72 md:w-96 lg:w-[420px] xl:w-[480px] object-contain drop-shadow-2xl"
-      animate={{ y: [0, -12, 0] }}
-      transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
-      onError={() => setFailed(true)}
-    />
+    <div className="relative w-[340px] md:w-[460px] lg:w-[560px] xl:w-[630px] h-[400px] md:h-[520px] lg:h-[620px] flex items-center justify-center">
+      <AnimatePresence mode="wait">
+        <motion.img
+          key={products[index].src}
+          src={products[index].src}
+          alt={products[index].alt}
+          className="absolute w-full h-full object-contain drop-shadow-2xl"
+          initial={{ opacity: 0, scale: 0.92, y: 16 }}
+          animate={{ opacity: 1, scale: 1, y: [0, -14, 0] }}
+          exit={{ opacity: 0, scale: 0.94, y: -12 }}
+          transition={{
+            opacity: { duration: 0.45 },
+            scale: { duration: 0.45 },
+            y: { repeat: Infinity, duration: 5, ease: "easeInOut", delay: 0.45 },
+          }}
+        />
+      </AnimatePresence>
+
+      {/* Dot indicators */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex gap-2">
+        {products.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setIndex(i)}
+            className="w-1.5 h-1.5 rounded-full transition-all duration-300"
+            style={{ background: i === index ? "#E2375C" : "rgba(255,255,255,0.25)" }}
+            aria-label={`Show flavour ${i + 1}`}
+          />
+        ))}
+      </div>
+    </div>
   );
 }
 

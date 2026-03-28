@@ -14,6 +14,7 @@ const config: Config = {
         "kokoa-berry": "#E8284F",  // punchier vivid red — more appetite-stimulating
         "kokoa-sage":  "#5C7A28",  // brighter fresh green — evokes ripe fruit
         "kokoa-husk":  "#E8A858",  // warm amber/caramel — butterscotch, very appetizing
+        "kokoa-paper": "#F5F3F0",  // barely-there warm off-white — easy on the eyes
       },
       fontFamily: {
         serif: ["var(--font-playfair)", "Georgia", "serif"],

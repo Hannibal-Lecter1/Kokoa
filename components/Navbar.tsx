@@ -30,7 +30,7 @@ export default function Navbar() {
     <>
       <motion.nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-black/5" : "bg-transparent"
+          scrolled ? "bg-kokoa-paper/95 backdrop-blur-md shadow-sm border-b border-black/5" : "bg-transparent"
         }`}
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -89,7 +89,7 @@ export default function Navbar() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            className="fixed inset-0 z-40 bg-white/97 backdrop-blur-sm flex flex-col items-center justify-center gap-10"
+            className="fixed inset-0 z-40 bg-kokoa-paper/98 backdrop-blur-sm flex flex-col items-center justify-center gap-10"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

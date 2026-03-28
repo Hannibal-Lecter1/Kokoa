@@ -29,7 +29,7 @@ const pillars = [
 
 export default function Upcycle() {
   return (
-    <section id="upcycling" className="bg-white py-28 px-6 overflow-hidden">
+    <section id="upcycling" className="bg-kokoa-paper py-28 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}

@@ -82,7 +82,7 @@ function HeroBackground() {
       aria-hidden="true"
       className="absolute inset-0 w-full h-full object-cover object-center"
       style={{ opacity: 0, transition: "opacity 0.7s ease" }}
-      onLoad={(e) => { e.currentTarget.style.opacity = "0.10"; }}
+      onLoad={(e) => { e.currentTarget.style.opacity = "0.07"; }}
     />
   );
 }
@@ -92,11 +92,11 @@ export default function Hero() {
     document.getElementById("the-range")?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <section className="relative min-h-screen w-full bg-white flex items-center overflow-hidden">
+    <section className="relative min-h-screen w-full bg-kokoa-paper flex items-center overflow-hidden">
 
       <HeroBackground />
-      {/* Subtle white overlay to keep photo very faint */}
-      <div className="absolute inset-0 bg-white/60" />
+      {/* Subtle overlay to keep photo very faint */}
+      <div className="absolute inset-0 bg-kokoa-paper/70" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-8 items-center py-32 lg:py-0 min-h-screen">
 

@@ -47,7 +47,7 @@ const cards = [
 
 export default function Origin() {
   return (
-    <section id="origin" className="bg-white py-20 px-6 md:px-12">
+    <section id="origin" className="bg-kokoa-paper py-20 px-6 md:px-12">
       {/* Header */}
       <motion.div
         className="mb-12 text-center"

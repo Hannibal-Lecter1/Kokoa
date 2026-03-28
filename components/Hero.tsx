@@ -53,7 +53,7 @@ function HeroProductVisual() {
             key={i}
             onClick={() => setIndex(i)}
             className="w-1.5 h-1.5 rounded-full transition-all duration-500"
-            style={{ background: i === index ? "#E2375C" : "rgba(255,255,255,0.25)" }}
+            style={{ background: i === index ? "#E8284F" : "rgba(74,45,36,0.25)" }}
             aria-label={`Show flavour ${i + 1}`}
           />
         ))}
@@ -82,7 +82,7 @@ function HeroBackground() {
       aria-hidden="true"
       className="absolute inset-0 w-full h-full object-cover object-center"
       style={{ opacity: 0, transition: "opacity 0.7s ease" }}
-      onLoad={(e) => { e.currentTarget.style.opacity = "0.43"; }}
+      onLoad={(e) => { e.currentTarget.style.opacity = "0.65"; }}
     />
   );
 }

@@ -82,7 +82,7 @@ function HeroBackground() {
       aria-hidden="true"
       className="absolute inset-0 w-full h-full object-cover object-center"
       style={{ opacity: 0, transition: "opacity 0.7s ease" }}
-      onLoad={(e) => { e.currentTarget.style.opacity = "0.65"; }}
+      onLoad={(e) => { e.currentTarget.style.opacity = "0.50"; }}
     />
   );
 }

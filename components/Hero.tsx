@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
 const products = [
@@ -17,37 +17,40 @@ function HeroProductVisual() {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    const id = setInterval(() => {
-      setIndex((i) => (i + 1) % products.length);
-    }, 4000);
+    const id = setInterval(() => setIndex((i) => (i + 1) % products.length), 4000);
     return () => clearInterval(id);
   }, []);
 
   return (
-    <div className="relative w-[340px] md:w-[460px] lg:w-[560px] xl:w-[630px] h-[400px] md:h-[520px] lg:h-[620px] flex items-center justify-center">
-      <AnimatePresence mode="wait">
-        {/* Wrapper handles fade + scale in/out */}
-        <motion.div
-          key={index}
-          className="absolute w-full h-full flex items-center justify-center"
-          initial={{ opacity: 0, scale: 0.93 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.95 }}
-          transition={{ duration: 0.4, ease: "easeInOut" }}
-        >
-          {/* Inner img handles float loop independently */}
-          <motion.img
-            src={products[index].src}
-            alt={products[index].alt}
-            className="w-full h-full object-contain drop-shadow-2xl"
-            animate={{ y: [0, -14, 0] }}
-            transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
-          />
-        </motion.div>
-      </AnimatePresence>
+    <div className="relative w-[340px] md:w-[460px] lg:w-[560px] xl:w-[630px] h-[400px] md:h-[520px] lg:h-[620px]">
+      {/* All images stay in DOM — only opacity changes, no re-fetch on switch */}
+      {products.map((p, i) => (
+        <motion.img
+          key={p.src}
+          src={p.src}
+          alt={p.alt}
+          className="absolute inset-0 w-full h-full object-contain drop-shadow-2xl"
+          style={{ pointerEvents: i === index ? "auto" : "none" }}
+          // Fade in/out based on active index
+          animate={{ opacity: i === index ? 1 : 0 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          // Float loop runs on every image always — seamless when it becomes visible
+          {...(i === index && {
+            // re-key the float when switching so it always starts from y=0
+          })}
+        />
+      ))}
+
+      {/* Shared float wrapper — always animating behind the scenes */}
+      <motion.div
+        className="absolute inset-0"
+        animate={{ y: [0, -14, 0] }}
+        transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
+        style={{ pointerEvents: "none" }}
+      />
 
       {/* Dot indicators */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex gap-2">
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex gap-2 z-10">
         {products.map((_, i) => (
           <button
             key={i}
@@ -62,6 +65,31 @@ function HeroProductVisual() {
   );
 }
 
+function HeroBackground() {
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    const img = imgRef.current;
+    if (!img) return;
+    // If already cached, onLoad won't fire — set opacity immediately
+    if (img.complete && img.naturalWidth > 0) {
+      img.style.opacity = "0.45";
+    }
+  }, []);
+
+  return (
+    <img
+      ref={imgRef}
+      src="/lifestyle/scattered.jpeg"
+      alt=""
+      aria-hidden="true"
+      className="absolute inset-0 w-full h-full object-cover object-center"
+      style={{ opacity: 0, transition: "opacity 0.7s ease" }}
+      onLoad={(e) => { e.currentTarget.style.opacity = "0.45"; }}
+    />
+  );
+}
+
 export default function Hero() {
   const scrollToNext = () =>
     document.getElementById("the-range")?.scrollIntoView({ behavior: "smooth" });
@@ -69,14 +97,7 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen w-full bg-kokoa-dark flex items-center overflow-hidden">
 
-      {/* Background — scattered tubs lifestyle photo */}
-      <img
-        src="/lifestyle/scattered.jpeg"
-        alt=""
-        aria-hidden="true"
-        className="absolute inset-0 w-full h-full object-cover object-center opacity-0 transition-opacity duration-700"
-        onLoad={(e) => (e.currentTarget.style.opacity = "0.45")}
-      />
+      <HeroBackground />
       {/* Dark overlay to keep text readable */}
       <div className="absolute inset-0 bg-kokoa-dark/70" />
 

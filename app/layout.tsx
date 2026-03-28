@@ -36,6 +36,12 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,700&family=Inter:wght@300;400;500;600&display=swap"
           rel="stylesheet"
         />
+        {/* Preload all hero product images so carousel switches are instant */}
+        {["/products/petel.png","/products/pettel.png","/products/blue.png","/products/passion.png","/products/banana.png","/products/tot.png"].map((src) => (
+          <link key={src} rel="preload" as="image" href={src} />
+        ))}
+        {/* Preload hero background */}
+        <link rel="preload" as="image" href="/lifestyle/scattered.jpeg" />
       </head>
       <body>{children}</body>
     </html>

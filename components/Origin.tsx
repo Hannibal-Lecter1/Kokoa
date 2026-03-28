@@ -47,10 +47,10 @@ const cards = [
 
 export default function Origin() {
   return (
-    <section id="origin" className="bg-white py-20 px-6 md:px-12 border-t border-black/5">
+    <section id="origin" className="bg-white py-20 px-6 md:px-12">
       {/* Header */}
       <motion.div
-        className="mb-12"
+        className="mb-12 text-center"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -66,7 +66,7 @@ export default function Origin() {
       </motion.div>
 
       {/* 2×2 card grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-6xl">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-6xl mx-auto">
         {cards.map((card, i) => (
           <motion.div
             key={i}

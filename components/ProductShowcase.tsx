@@ -149,7 +149,7 @@ export default function ProductShowcase() {
   const current = products.find((p) => p.slug === active)!;
 
   return (
-    <section id="the-range" className="bg-kokoa-cream py-28 px-6">
+    <section id="the-range" className="bg-white py-28 px-6">
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}

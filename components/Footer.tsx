@@ -54,7 +54,7 @@ export default function Footer() {
      }`;
 
   return (
-    <footer id="partner" className="bg-white text-kokoa-dark border-t border-black/8">
+    <footer id="partner" className="bg-white text-kokoa-dark">
 
       {/* ── B2B section ─────────────────────────────── */}
       <div className="max-w-7xl mx-auto px-6 py-24 md:py-32">
@@ -223,7 +223,7 @@ export default function Footer() {
       </div>
 
       {/* ── Bottom bar ──────────────────────────────── */}
-      <div className="border-t border-black/8">
+      <div>
         <div className="max-w-7xl mx-auto px-6 py-7 flex flex-col md:flex-row items-center justify-between gap-5">
           {/* Mascot logo */}
           <div className="flex-shrink-0">

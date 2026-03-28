@@ -36,7 +36,7 @@ export default function Footer() {
       if (data.success) {
         setSubmitted(true);
       } else {
-        setError(`Failed (${JSON.stringify(data._debug ?? data)}). Email kevin@kokoafruits.com`);
+        setError("Something went wrong. Please email us directly at kevin@kokoafruits.com");
       }
     } catch {
       setError("Could not send. Please email us directly at kevin@kokoafruits.com");

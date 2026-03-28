@@ -46,15 +46,15 @@ export default function Footer() {
   };
 
   const inputClass = (name: string) =>
-    `w-full bg-white/5 border rounded-lg px-5 py-4 text-kokoa-cream font-sans text-sm
-     focus:outline-none transition-all duration-300 placeholder:text-white/20 ${
+    `w-full bg-black/3 border rounded-lg px-5 py-4 text-kokoa-dark font-sans text-sm
+     focus:outline-none transition-all duration-300 placeholder:text-kokoa-dark/25 ${
        focused === name
-         ? "border-kokoa-berry bg-white/8"
-         : "border-white/10 hover:border-white/25"
+         ? "border-kokoa-berry bg-white"
+         : "border-black/10 hover:border-black/20"
      }`;
 
   return (
-    <footer id="partner" className="bg-kokoa-dark text-kokoa-cream">
+    <footer id="partner" className="bg-white text-kokoa-dark border-t border-black/8">
 
       {/* ── B2B section ─────────────────────────────── */}
       <div className="max-w-7xl mx-auto px-6 py-24 md:py-32">
@@ -70,12 +70,12 @@ export default function Footer() {
             <span className="font-sans text-xs tracking-[0.35em] uppercase text-kokoa-berry block mb-5">
               B2B Partnerships
             </span>
-            <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl text-kokoa-cream leading-tight mb-8">
+            <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl text-kokoa-dark leading-tight mb-8">
               Bring Kokoa to
               <br />
               <span className="italic text-kokoa-berry">Your Shelves.</span>
             </h2>
-            <p className="font-sans text-kokoa-cream/55 leading-relaxed text-lg mb-10 max-w-md">
+            <p className="font-sans text-kokoa-dark/55 leading-relaxed text-lg mb-10 max-w-md">
               We are actively seeking premium retail partners, specialty grocery
               distributors, and food-service buyers who share our commitment to
               conscious indulgence and ecological responsibility.
@@ -85,20 +85,20 @@ export default function Footer() {
               {BENEFITS.map((item) => (
                 <li key={item} className="flex items-start gap-3">
                   <CheckCircle2 className="w-4 h-4 text-kokoa-berry flex-shrink-0 mt-0.5" />
-                  <span className="font-sans text-sm text-kokoa-cream/65">{item}</span>
+                  <span className="font-sans text-sm text-kokoa-dark/65">{item}</span>
                 </li>
               ))}
             </ul>
 
             {/* Contact info */}
             <div className="space-y-3">
-              <div className="flex items-center gap-3 text-kokoa-cream/40">
+              <div className="flex items-center gap-3 text-kokoa-dark/40">
                 <MapPin className="w-4 h-4 flex-shrink-0" />
                 <span className="font-sans text-sm">
                   Congelados Ecuatorianos Aquacongela S.A. · Guayaquil, Ecuador
                 </span>
               </div>
-              <div className="flex items-center gap-3 text-kokoa-cream/40">
+              <div className="flex items-center gap-3 text-kokoa-dark/40">
                 <Mail className="w-4 h-4 flex-shrink-0" />
                 <a href="mailto:kevin@kokoafruits.com" className="hover:text-kokoa-berry transition-colors duration-300">
                   kevin@kokoafruits.com
@@ -122,8 +122,8 @@ export default function Footer() {
                 transition={{ duration: 0.5 }}
               >
                 <CheckCircle2 className="w-12 h-12 text-kokoa-sage" />
-                <p className="font-serif text-4xl text-kokoa-cream">Thank You.</p>
-                <p className="font-sans text-kokoa-cream/50 max-w-xs text-center leading-relaxed">
+                <p className="font-serif text-4xl text-kokoa-dark">Thank You.</p>
+                <p className="font-sans text-kokoa-dark/50 max-w-xs text-center leading-relaxed">
                   We've received your inquiry and will be in touch within 48 business hours.
                 </p>
               </motion.div>
@@ -131,7 +131,7 @@ export default function Footer() {
               <form onSubmit={handleSubmit} className="space-y-5">
                 {/* Company */}
                 <div>
-                  <label className="font-sans text-xs tracking-widest uppercase text-kokoa-cream/35 block mb-2">
+                  <label className="font-sans text-xs tracking-widest uppercase text-kokoa-dark/40 block mb-2">
                     Company Name *
                   </label>
                   <input
@@ -149,7 +149,7 @@ export default function Footer() {
                 {/* Name + Email */}
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="font-sans text-xs tracking-widest uppercase text-kokoa-cream/35 block mb-2">
+                    <label className="font-sans text-xs tracking-widest uppercase text-kokoa-dark/40 block mb-2">
                       Contact Name *
                     </label>
                     <input
@@ -164,7 +164,7 @@ export default function Footer() {
                     />
                   </div>
                   <div>
-                    <label className="font-sans text-xs tracking-widest uppercase text-kokoa-cream/35 block mb-2">
+                    <label className="font-sans text-xs tracking-widest uppercase text-kokoa-dark/40 block mb-2">
                       Email *
                     </label>
                     <input
@@ -182,7 +182,7 @@ export default function Footer() {
 
                 {/* Message */}
                 <div>
-                  <label className="font-sans text-xs tracking-widest uppercase text-kokoa-cream/35 block mb-2">
+                  <label className="font-sans text-xs tracking-widest uppercase text-kokoa-dark/40 block mb-2">
                     Tell Us More *
                   </label>
                   <textarea
@@ -213,7 +213,7 @@ export default function Footer() {
                   <p className="font-sans text-xs text-kokoa-berry/80 text-center">{error}</p>
                 )}
 
-                <p className="font-sans text-xs text-kokoa-cream/25 text-center">
+                <p className="font-sans text-xs text-kokoa-dark/25 text-center">
                   No e-commerce available. Kokoa is a B2B showcase platform only.
                 </p>
               </form>
@@ -223,7 +223,7 @@ export default function Footer() {
       </div>
 
       {/* ── Bottom bar ──────────────────────────────── */}
-      <div className="border-t border-white/8">
+      <div className="border-t border-black/8">
         <div className="max-w-7xl mx-auto px-6 py-7 flex flex-col md:flex-row items-center justify-between gap-5">
           {/* Mascot logo */}
           <div className="flex-shrink-0">
@@ -238,7 +238,7 @@ export default function Footer() {
               }}
             />
             <span
-              className="font-serif text-2xl tracking-[0.3em] text-kokoa-cream"
+              className="font-serif text-2xl tracking-[0.3em] text-kokoa-dark"
               style={{ display: "none" }}
             >
               KOKOA
@@ -246,7 +246,7 @@ export default function Footer() {
           </div>
 
           {/* Central blurb */}
-          <p className="font-sans text-xs text-kokoa-cream/30 text-center leading-relaxed">
+          <p className="font-sans text-xs text-kokoa-dark/30 text-center leading-relaxed">
             Manufactured by Congelados Ecuatorianos Aquacongela S.A. · Guayaquil, Ecuador
             <br />
             100% Upcycled Cacao · Preservative-Free · Gluten-Free · No Artificial Colors
@@ -257,14 +257,14 @@ export default function Footer() {
             <a
               href="#"
               aria-label="Kokoa on Instagram"
-              className="text-kokoa-cream/35 hover:text-kokoa-berry transition-colors duration-300"
+              className="text-kokoa-dark/35 hover:text-kokoa-berry transition-colors duration-300"
             >
               <Instagram className="w-5 h-5" />
             </a>
             <a
               href="#"
               aria-label="Kokoa on TikTok"
-              className="text-kokoa-cream/35 hover:text-kokoa-berry transition-colors duration-300"
+              className="text-kokoa-dark/35 hover:text-kokoa-berry transition-colors duration-300"
             >
               <Music2 className="w-5 h-5" />
             </a>
@@ -273,7 +273,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <div className="pb-6 text-center">
-          <p className="font-sans text-xs text-kokoa-cream/18">
+          <p className="font-sans text-xs text-kokoa-dark/25">
             © {new Date().getFullYear()} Kokoa · Bean-to-Cup · Ecuador · All rights reserved.
           </p>
         </div>

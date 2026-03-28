@@ -30,7 +30,7 @@ export default function Navbar() {
     <>
       <motion.nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? "bg-kokoa-dark/90 backdrop-blur-md shadow-lg" : "bg-transparent"
+          scrolled ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-black/5" : "bg-transparent"
         }`}
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -67,7 +67,7 @@ export default function Navbar() {
               <button
                 key={link.id}
                 onClick={() => scrollTo(link.id)}
-                className="font-sans text-sm text-white/75 hover:text-kokoa-berry transition-colors duration-300 tracking-wide"
+                className="font-sans text-sm text-kokoa-dark/60 hover:text-kokoa-berry transition-colors duration-300 tracking-wide"
               >
                 {link.label}
               </button>
@@ -76,7 +76,7 @@ export default function Navbar() {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden text-white"
+            className="md:hidden text-kokoa-dark"
             onClick={() => setMenuOpen((v) => !v)}
             aria-label="Toggle menu"
           >
@@ -89,7 +89,7 @@ export default function Navbar() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            className="fixed inset-0 z-40 bg-kokoa-dark/95 backdrop-blur-sm flex flex-col items-center justify-center gap-10"
+            className="fixed inset-0 z-40 bg-white/97 backdrop-blur-sm flex flex-col items-center justify-center gap-10"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -99,7 +99,7 @@ export default function Navbar() {
               <motion.button
                 key={link.id}
                 onClick={() => scrollTo(link.id)}
-                className="font-serif text-3xl text-white hover:text-kokoa-berry transition-colors duration-300"
+                className="font-serif text-3xl text-kokoa-dark hover:text-kokoa-berry transition-colors duration-300"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.08 }}

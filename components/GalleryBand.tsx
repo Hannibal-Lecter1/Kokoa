@@ -22,7 +22,7 @@ export function GalleryDuo() {
   ];
 
   return (
-    <section className="bg-kokoa-dark py-3 px-3">
+    <section className="bg-white py-3 px-3 border-y border-black/5">
       <div className="grid grid-cols-3 gap-3 max-w-7xl mx-auto">
         {photos.map((photo, i) => (
           <motion.div

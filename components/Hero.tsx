@@ -70,7 +70,7 @@ function HeroBackground() {
     if (!img) return;
     // If already cached, onLoad won't fire — set opacity immediately
     if (img.complete && img.naturalWidth > 0) {
-      img.style.opacity = "0.45";
+      img.style.opacity = "0.10";
     }
   }, []);
 
@@ -82,7 +82,7 @@ function HeroBackground() {
       aria-hidden="true"
       className="absolute inset-0 w-full h-full object-cover object-center"
       style={{ opacity: 0, transition: "opacity 0.7s ease" }}
-      onLoad={(e) => { e.currentTarget.style.opacity = "0.45"; }}
+      onLoad={(e) => { e.currentTarget.style.opacity = "0.10"; }}
     />
   );
 }
@@ -92,11 +92,11 @@ export default function Hero() {
     document.getElementById("the-range")?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <section className="relative min-h-screen w-full bg-kokoa-dark flex items-center overflow-hidden">
+    <section className="relative min-h-screen w-full bg-white flex items-center overflow-hidden">
 
       <HeroBackground />
-      {/* Dark overlay to keep text readable */}
-      <div className="absolute inset-0 bg-kokoa-dark/70" />
+      {/* Subtle white overlay to keep photo very faint */}
+      <div className="absolute inset-0 bg-white/60" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-8 items-center py-32 lg:py-0 min-h-screen">
 
@@ -112,7 +112,7 @@ export default function Hero() {
           </motion.span>
 
           <motion.h1
-            className="font-serif text-5xl md:text-6xl lg:text-7xl text-white leading-[1.08] mb-7"
+            className="font-serif text-5xl md:text-6xl lg:text-7xl text-kokoa-dark leading-[1.08] mb-7"
             initial={{ opacity: 0, y: 36 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, delay: 0.38 }}
@@ -125,7 +125,7 @@ export default function Hero() {
           </motion.h1>
 
           <motion.p
-            className="font-sans text-white/65 text-lg leading-relaxed max-w-md mb-10"
+            className="font-sans text-kokoa-dark/55 text-lg leading-relaxed max-w-md mb-10"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.56 }}
@@ -143,7 +143,7 @@ export default function Hero() {
           >
             <motion.button
               onClick={scrollToNext}
-              className="font-sans text-xs tracking-[0.22em] uppercase text-white border border-kokoa-berry px-9 py-4 hover:bg-kokoa-berry transition-all duration-300"
+              className="font-sans text-xs tracking-[0.22em] uppercase text-kokoa-dark border border-kokoa-berry px-9 py-4 hover:bg-kokoa-berry hover:text-white transition-all duration-300"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
             >
@@ -151,7 +151,7 @@ export default function Hero() {
             </motion.button>
             <motion.button
               onClick={() => document.getElementById("partner")?.scrollIntoView({ behavior: "smooth" })}
-              className="font-sans text-xs tracking-[0.22em] uppercase text-white/50 px-6 py-4 hover:text-white transition-colors duration-300"
+              className="font-sans text-xs tracking-[0.22em] uppercase text-kokoa-dark/40 px-6 py-4 hover:text-kokoa-berry transition-colors duration-300"
               whileHover={{ scale: 1.02 }}
             >
               Partner with us →
@@ -168,7 +168,7 @@ export default function Hero() {
             {["Preservative-free", "No artificial colours", "Gluten-free", "Bean to cup"].map((badge) => (
               <span
                 key={badge}
-                className="font-sans text-xs text-white/35 tracking-wide border border-white/10 rounded-full px-3 py-1"
+                className="font-sans text-xs text-kokoa-dark/40 tracking-wide border border-kokoa-dark/10 rounded-full px-3 py-1"
               >
                 {badge}
               </span>
@@ -190,7 +190,7 @@ export default function Hero() {
       {/* Scroll indicator */}
       <motion.button
         onClick={scrollToNext}
-        className="absolute bottom-9 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30 hover:text-kokoa-berry transition-colors duration-300"
+        className="absolute bottom-9 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-kokoa-dark/25 hover:text-kokoa-berry transition-colors duration-300"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.3 }}

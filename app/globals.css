@@ -12,7 +12,7 @@ html {
 }
 
 body {
-  @apply bg-kokoa-cream text-kokoa-dark font-sans;
+  @apply bg-white text-kokoa-dark font-sans;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -22,14 +22,14 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #F8F3EB;
+  background: #ffffff;
 }
 ::-webkit-scrollbar-thumb {
-  background: #D59F80;
+  background: #E8A858;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3E2723;
+  background: #4A2D24;
 }
 
 /* Prevent horizontal overflow at the page level */

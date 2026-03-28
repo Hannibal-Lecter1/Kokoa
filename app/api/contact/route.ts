@@ -18,7 +18,7 @@ export async function POST(req: Request) {
         email:    body.email,
         message:  body.message,
         _subject: `Kokoa B2B Inquiry — ${body.company}`,
-        _cc:      "kevin@kokoafruits.com",
+        _cc:      "kevin@kokoafruits.com,joe@kokoafruits.com",
         _captcha: "false",
         _template: "table",
       }),

@@ -54,7 +54,7 @@ export default function Footer() {
      }`;
 
   return (
-    <footer id="partner" className="bg-white text-kokoa-dark">
+    <footer id="partner" className="bg-white text-kokoa-dark border-t border-black/6">
 
       {/* ── B2B section ─────────────────────────────── */}
       <div className="max-w-7xl mx-auto px-6 py-24 md:py-32">

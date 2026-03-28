@@ -27,21 +27,13 @@ export default function Footer() {
     setSending(true);
     setError(null);
     try {
-      const res = await fetch("https://formsubmit.co/ajax/jonathan@kokoafruits.com", {
+      const res = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          company:  form.company,
-          name:     form.name,
-          email:    form.email,
-          message:  form.message,
-          _subject: `Kokoa B2B Inquiry — ${form.company}`,
-          _cc:      "kevin@kokoafruits.com",
-          _captcha: "false",
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
       });
       const data = await res.json();
-      if (data.success === "true" || data.success === true) {
+      if (data.success) {
         setSubmitted(true);
       } else {
         setError("Something went wrong. Please email us directly at kevin@kokoafruits.com");

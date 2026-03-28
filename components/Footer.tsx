@@ -27,7 +27,7 @@ export default function Footer() {
     setSending(true);
     setError(null);
     try {
-      const res = await fetch("https://formsubmit.co/ajax/kevin@kokoafruits.com", {
+      const res = await fetch("https://formsubmit.co/ajax/jonathan@kokoafruits.com", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
@@ -36,6 +36,7 @@ export default function Footer() {
           email:    form.email,
           message:  form.message,
           _subject: `Kokoa B2B Inquiry — ${form.company}`,
+          _cc:      "kevin@kokoafruits.com",
           _captcha: "false",
         }),
       });

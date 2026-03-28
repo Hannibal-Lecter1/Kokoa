@@ -13,21 +13,43 @@ const BENEFITS = [
 ];
 
 export default function Footer() {
-  const [form, setForm]       = useState({ company: "", name: "", email: "", message: "" });
+  const [form, setForm]           = useState({ company: "", name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
-  const [focused, setFocused] = useState<string | null>(null);
+  const [sending, setSending]     = useState(false);
+  const [error, setError]         = useState<string | null>(null);
+  const [focused, setFocused]     = useState<string | null>(null);
 
   const set = (field: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((prev) => ({ ...prev, [field]: e.target.value }));
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Kokoa B2B Inquiry — ${form.company}`);
-    const body = encodeURIComponent(
-      `Company: ${form.company}\nName: ${form.name}\nEmail: ${form.email}\n\n${form.message}`
-    );
-    window.location.href = `mailto:kevin@kokoafruits.com?subject=${subject}&body=${body}`;
-    setSubmitted(true);
+    setSending(true);
+    setError(null);
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/kevin@kokoafruits.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          company:  form.company,
+          name:     form.name,
+          email:    form.email,
+          message:  form.message,
+          _subject: `Kokoa B2B Inquiry — ${form.company}`,
+          _captcha: "false",
+        }),
+      });
+      const data = await res.json();
+      if (data.success === "true" || data.success === true) {
+        setSubmitted(true);
+      } else {
+        setError("Something went wrong. Please email us directly at kevin@kokoafruits.com");
+      }
+    } catch {
+      setError("Could not send. Please email us directly at kevin@kokoafruits.com");
+    } finally {
+      setSending(false);
+    }
   };
 
   const inputClass = (name: string) =>
@@ -185,13 +207,18 @@ export default function Footer() {
                 {/* Submit */}
                 <motion.button
                   type="submit"
-                  className="w-full bg-kokoa-berry text-white font-sans text-sm tracking-[0.2em] uppercase py-5 rounded-lg flex items-center justify-center gap-3 hover:bg-kokoa-berry/85 transition-all duration-300"
-                  whileHover={{ scale: 1.015 }}
-                  whileTap={{ scale: 0.985 }}
+                  disabled={sending}
+                  className="w-full bg-kokoa-berry text-white font-sans text-sm tracking-[0.2em] uppercase py-5 rounded-lg flex items-center justify-center gap-3 hover:bg-kokoa-berry/85 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
+                  whileHover={{ scale: sending ? 1 : 1.015 }}
+                  whileTap={{ scale: sending ? 1 : 0.985 }}
                 >
-                  Send Inquiry
-                  <ArrowRight className="w-4 h-4" />
+                  {sending ? "Sending…" : "Send Inquiry"}
+                  {!sending && <ArrowRight className="w-4 h-4" />}
                 </motion.button>
+
+                {error && (
+                  <p className="font-sans text-xs text-kokoa-berry/80 text-center">{error}</p>
+                )}
 
                 <p className="font-sans text-xs text-kokoa-cream/25 text-center">
                   No e-commerce available. Kokoa is a B2B showcase platform only.

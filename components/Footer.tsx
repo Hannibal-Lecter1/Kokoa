@@ -27,10 +27,11 @@ export default function Footer() {
     setSending(true);
     setError(null);
     try {
+      const session_id = sessionStorage.getItem("_k_sid") ?? undefined;
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, session_id }),
       });
       const data = await res.json();
       if (data.success) {

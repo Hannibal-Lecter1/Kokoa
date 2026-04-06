@@ -1,4 +1,7 @@
 import { NextResponse } from "next/server";
+import { getDb } from "@/lib/db";
+
+export const runtime = "nodejs";
 
 export async function POST(req: Request) {
   try {
@@ -29,11 +32,18 @@ export async function POST(req: Request) {
     try { data = JSON.parse(text); } catch { /* non-JSON */ }
 
     const ok = data.success === "true" || data.success === true;
-
-    // formsubmit sends activation email on first use — treat as success
     const needsActivation =
       typeof data.message === "string" &&
       data.message.toLowerCase().includes("activation");
+
+    // Mark form submitted in analytics
+    if ((ok || needsActivation) && body.session_id) {
+      try {
+        getDb().prepare(
+          `UPDATE visits SET form_submitted = 1 WHERE session_id = ?`
+        ).run(body.session_id);
+      } catch { /* analytics failure must never break the form */ }
+    }
 
     return NextResponse.json({ success: ok || needsActivation });
 

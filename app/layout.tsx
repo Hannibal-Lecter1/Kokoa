@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import AnalyticsTracker from "@/components/AnalyticsTracker";
 
 export const metadata: Metadata = {
   title: "Kokoa — Conscious Indulgence. Crafted at the Source.",
@@ -43,7 +44,7 @@ export default function RootLayout({
         {/* Preload hero background */}
         <link rel="preload" as="image" href="/lifestyle/scattered.jpeg" />
       </head>
-      <body>{children}</body>
+      <body><AnalyticsTracker />{children}</body>
     </html>
   );
 }

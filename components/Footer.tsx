@@ -113,6 +113,12 @@ export default function Footer() {
                   kevin@kokoafruits.com
                 </a>
               </div>
+              <div className="flex items-center gap-3 text-kokoa-dark/40">
+                <Mail className="w-4 h-4 flex-shrink-0" />
+                <a href="mailto:jonathan@kokoafruits.com" className="hover:text-kokoa-berry transition-colors duration-300">
+                  jonathan@kokoafruits.com
+                </a>
+              </div>
             </div>
           </motion.div>
 

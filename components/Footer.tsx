@@ -93,8 +93,16 @@ export default function Footer() {
 
             {/* Contact info */}
             <div className="space-y-3">
-              <div className="flex items-center gap-3 text-kokoa-dark/40">
-                <MapPin className="w-4 h-4 flex-shrink-0" />
+              <div className="flex items-start gap-3 text-kokoa-dark/40">
+                <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                <div className="font-sans text-sm space-y-0.5">
+                  <p>Head Office · LeKokoa Ltd.</p>
+                  <p>Demosthenous 10, Yianni-Maria Court Office</p>
+                  <p>6058 Larnaca, Cyprus</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 text-kokoa-dark/40">
+                <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5" />
                 <span className="font-sans text-sm">
                   Congelados Ecuatorianos Aquacongela S.A. · Guayaquil, Ecuador
                 </span>

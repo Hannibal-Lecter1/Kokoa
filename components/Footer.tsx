@@ -104,7 +104,7 @@ export default function Footer() {
               <div className="flex items-start gap-3 text-kokoa-dark/40">
                 <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5" />
                 <span className="font-sans text-sm">
-                  Congelados Ecuatorianos Aquacongela S.A. · Guayaquil, Ecuador
+                  Made in Guayaquil, Ecuador
                 </span>
               </div>
               <div className="flex items-center gap-3 text-kokoa-dark/40">
@@ -262,7 +262,7 @@ export default function Footer() {
 
           {/* Central blurb */}
           <p className="font-sans text-xs text-kokoa-dark/30 text-center leading-relaxed">
-            Manufactured by Congelados Ecuatorianos Aquacongela S.A. · Guayaquil, Ecuador
+            Made in Guayaquil, Ecuador
             <br />
             100% Upcycled Cacao · Preservative-Free · Gluten-Free · No Artificial Colors
           </p>

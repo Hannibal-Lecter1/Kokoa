@@ -1,4 +1,4 @@
-// Temporary in-memory analytics store (data resets on restart)
+// In-memory analytics store (data resets on restart — no native deps)
 // Replace with persistent DB once Railway PostgreSQL is configured
 
 export type Visitor = {

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getDb } from "@/lib/db";
+import { upsertVisitor, insertVisit, updateVisit } from "@/lib/db";
 
 export const runtime = "nodejs";
 
@@ -31,22 +31,9 @@ export async function POST(req: Request) {
     const ip = getIp(req);
     const country = await getCountry(ip);
     const now = Math.floor(Date.now() / 1000);
-    const db = getDb();
 
-    // Upsert visitor
-    db.prepare(`
-      INSERT INTO visitors (ip, country, first_seen, visit_count)
-      VALUES (?, ?, ?, 1)
-      ON CONFLICT(ip) DO UPDATE SET
-        visit_count = visit_count + 1,
-        country = excluded.country
-    `).run(ip, country, now);
-
-    // Insert visit (ignore if session already exists — double-mount guard)
-    db.prepare(`
-      INSERT OR IGNORE INTO visits (session_id, ip, country, started_at)
-      VALUES (?, ?, ?, ?)
-    `).run(session_id, ip, country, now);
+    upsertVisitor(ip, country, now);
+    insertVisit(session_id, ip, country, now);
 
     return NextResponse.json({ ok: true });
   } catch (err) {
@@ -62,17 +49,7 @@ export async function PATCH(req: Request) {
     const { session_id, duration_sec, form_submitted } = body;
     if (!session_id) return NextResponse.json({ ok: false }, { status: 400 });
 
-    const db = getDb();
-    db.prepare(`
-      UPDATE visits SET
-        duration_sec   = COALESCE(?, duration_sec),
-        form_submitted = CASE WHEN ? = 1 THEN 1 ELSE form_submitted END
-      WHERE session_id = ?
-    `).run(
-      duration_sec   ?? null,
-      form_submitted ? 1 : 0,
-      session_id
-    );
+    updateVisit(session_id, duration_sec, form_submitted === true || form_submitted === 1);
 
     return NextResponse.json({ ok: true });
   } catch (err) {

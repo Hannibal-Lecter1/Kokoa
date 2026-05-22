@@ -5,12 +5,12 @@ import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
 const products = [
-  { src: "/products/petel.png",   alt: "Raspberries White & Milk Chocolate" },
-  { src: "/products/pettel.png",  alt: "Raspberries Dark Chocolate" },
-  { src: "/products/blue.png",    alt: "Blueberries Dark Chocolate" },
-  { src: "/products/passion.png", alt: "Passion Fruit Milk Chocolate" },
-  { src: "/products/banana.png",  alt: "Banana White Chocolate" },
-  { src: "/products/tot.png",     alt: "Strawberries Dark Chocolate" },
+  { src: "/products/petel.webp",   alt: "Raspberries White & Milk Chocolate" },
+  { src: "/products/pettel.webp",  alt: "Raspberries Dark Chocolate" },
+  { src: "/products/blue.webp",    alt: "Blueberries Dark Chocolate" },
+  { src: "/products/passion.webp", alt: "Passion Fruit Milk Chocolate" },
+  { src: "/products/banana.webp",  alt: "Banana White Chocolate" },
+  { src: "/products/tot.webp",     alt: "Strawberries Dark Chocolate" },
 ];
 
 function HeroProductVisual() {

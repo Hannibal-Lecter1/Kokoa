@@ -38,7 +38,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
         {/* Preload all hero product images so carousel switches are instant */}
-        {["/products/petel.webp","/products/pettel.webp","/products/blue.webp","/products/passion.webp","/products/banana.webp","/products/tot.webp"].map((src) => (
+        {["/products/tub-strawberry.webp","/products/tub-rasp-milk.webp","/products/tub-rasp-dark.webp","/products/tub-blue.webp","/products/tub-banana.webp"].map((src) => (
           <link key={src} rel="preload" as="image" href={src} fetchPriority="high" />
         ))}
         {/* Preload hero background */}

@@ -81,7 +81,7 @@ export default function Footer() {
               B2B Partnerships
             </span>
             <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl text-kokoa-dark leading-tight mb-8">
-              Bring LeKokoa to
+              Bring Kokoa to
               <br />
               <span className="italic text-kokoa-berry">Your Shelves.</span>
             </h2>

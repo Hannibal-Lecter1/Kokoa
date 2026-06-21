@@ -58,9 +58,9 @@ export default function ProductShowcase() {
             <AnimatePresence mode="wait">
               <motion.img
                 key={current.id}
-                src={current.image}
+                src={current.showcaseImage ?? current.image}
                 alt={`Kokoa ${current.name} — ${current.chocolate}`}
-                className="w-64 md:w-72 lg:w-80 xl:w-96 object-contain drop-shadow-xl"
+                className="w-72 md:w-80 lg:w-[26rem] xl:w-[30rem] object-contain drop-shadow-xl"
                 initial={{ opacity: 0, scale: 0.92, y: 20 }}
                 animate={{ opacity: 1, scale: 1,   y: 0  }}
                 exit={{   opacity: 0, scale: 0.92, y: -20 }}

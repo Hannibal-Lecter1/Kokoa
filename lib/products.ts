@@ -5,6 +5,7 @@ export type FrozenFlavor = {
   chocolate: string;
   accentColor: string;
   image: string;
+  showcaseImage?: string;
   market: "US" | "EU" | "BOTH";
 };
 
@@ -33,6 +34,7 @@ export const frozenFlavors: FrozenFlavor[] = [
     chocolate: "White & Milk Chocolate",
     accentColor: "#E2375C",
     image: "/products/tub-rasp-milk.webp",
+    showcaseImage: "/products/pair-rasp-milk.webp",
     market: "US",
   },
   {
@@ -42,6 +44,7 @@ export const frozenFlavors: FrozenFlavor[] = [
     chocolate: "White & Dark Chocolate",
     accentColor: "#8B2252",
     image: "/products/tub-rasp-dark.webp",
+    showcaseImage: "/products/pair-rasp-dark.webp",
     market: "US",
   },
   {
@@ -51,6 +54,7 @@ export const frozenFlavors: FrozenFlavor[] = [
     chocolate: "White & Milk Chocolate",
     accentColor: "#5B4FA0",
     image: "/products/tub-blue.webp",
+    showcaseImage: "/products/pair-blue.webp",
     market: "US",
   },
   {
@@ -60,6 +64,7 @@ export const frozenFlavors: FrozenFlavor[] = [
     chocolate: "White & Dark Chocolate",
     accentColor: "#A07840",
     image: "/products/tub-banana.webp",
+    showcaseImage: "/products/pair-banana.webp",
     market: "US",
   },
   {
@@ -69,6 +74,7 @@ export const frozenFlavors: FrozenFlavor[] = [
     chocolate: "Vegan White Chocolate & Coconut",
     accentColor: "#E89B3C",
     image: "/products/tub-pina-colada.webp",
+    showcaseImage: "/products/pair-pina-colada.webp",
     market: "US",
   },
 ];

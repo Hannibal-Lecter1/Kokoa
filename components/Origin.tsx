@@ -39,7 +39,7 @@ const cards = [
     title:       "Whole fruit. Real chocolate.",
     subtitle:    "150g per tub",
     description:
-      "The fruit goes in frozen. Two layers of chocolate go on outside. That's it. No artificial colours, no preservatives, no flavourings. The ingredients list is short because the product is honest.",
+      "The fruit goes in frozen. Two layers of Ecuadorian chocolate go on outside. Made with real fruit, no artificial colors or flavors. The ingredients list is short because the product is honest.",
     bg: "#E2375C",
     text: "#ffffff",
   },

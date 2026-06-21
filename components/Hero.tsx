@@ -3,32 +3,26 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import { frozenFlavors } from "@/lib/products";
 
-const products = [
-  { src: "/products/tub-strawberry.webp",  alt: "Strawberries White & Milk Chocolate" },
-  { src: "/products/tub-rasp-milk.webp",   alt: "Raspberries White & Milk Chocolate" },
-  { src: "/products/tub-rasp-dark.webp",   alt: "Raspberries White & Dark Chocolate" },
-  { src: "/products/tub-blue.webp",        alt: "Blueberries White & Milk Chocolate" },
-  { src: "/products/tub-banana.webp",      alt: "Bananas White & Dark Chocolate" },
-];
+const heroProducts = frozenFlavors.map((f) => ({ src: f.image, alt: `${f.name} — ${f.chocolate}` }));
 
 function HeroProductVisual() {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    const id = setInterval(() => setIndex((i) => (i + 1) % products.length), 4000);
+    const id = setInterval(() => setIndex((i) => (i + 1) % heroProducts.length), 4000);
     return () => clearInterval(id);
   }, []);
 
   return (
     <div className="relative w-[340px] md:w-[460px] lg:w-[560px] xl:w-[630px] h-[400px] md:h-[520px] lg:h-[620px]">
-      {/* Float wrapper — all images ride this together */}
       <motion.div
         className="absolute inset-0"
         animate={{ y: [0, -16, 0] }}
         transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
       >
-        {products.map((p, i) => (
+        {heroProducts.map((p, i) => (
           <motion.img
             key={p.src}
             src={p.src}
@@ -45,9 +39,8 @@ function HeroProductVisual() {
         ))}
       </motion.div>
 
-      {/* Dot indicators */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-        {products.map((_, i) => (
+        {heroProducts.map((_, i) => (
           <button
             key={i}
             onClick={() => setIndex(i)}
@@ -67,9 +60,8 @@ function HeroBackground() {
   useEffect(() => {
     const img = imgRef.current;
     if (!img) return;
-    // If already cached, onLoad won't fire — set opacity immediately
     if (img.complete && img.naturalWidth > 0) {
-      img.style.opacity = "0.10";
+      img.style.opacity = "0.40";
     }
   }, []);
 
@@ -94,7 +86,6 @@ export default function Hero() {
     <section className="relative min-h-screen w-full bg-kokoa-paper flex items-center overflow-hidden">
 
       <HeroBackground />
-      {/* Subtle overlay to keep photo very faint */}
       <div className="absolute inset-0 bg-kokoa-paper/70" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-8 items-center py-32 lg:py-0 min-h-screen">
@@ -107,7 +98,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Ecuadorian Chocolate · Bean to Cup · 150g
+            Double-Coated · Ecuadorian Chocolate · 6 oz
           </motion.span>
 
           <motion.h1
@@ -116,11 +107,13 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, delay: 0.38 }}
           >
-            Frozen fruit.
+            Real Frozen Fruit.
             <br />
-            <span className="italic text-kokoa-berry">Ecuadorian</span>
+            <span className="italic text-kokoa-berry">Double-Coated</span>
             <br />
-            chocolate.
+            in Ecuadorian
+            <br />
+            Chocolate.
           </motion.h1>
 
           <motion.p
@@ -129,9 +122,8 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.56 }}
           >
-            Whole frozen fruit. Two layers of premium chocolate made
-            from bean to cup in Guayaquil, Ecuador.
-            No shortcuts. No fillers. Just fruit and real chocolate.
+            Real fruit inside. Two layers of premium chocolate outside.
+            Crafted at the source in Ecuador.
           </motion.p>
 
           <motion.div
@@ -157,14 +149,13 @@ export default function Hero() {
             </motion.button>
           </motion.div>
 
-          {/* Trust badges */}
           <motion.div
             className="flex flex-wrap gap-3 mt-10"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1, duration: 0.7 }}
           >
-            {["Preservative-free", "No artificial colours", "Gluten-free", "Bean to cup"].map((badge) => (
+            {["Made with real fruit", "No artificial colors or flavors", "Double-coated", "Crafted in Ecuador"].map((badge) => (
               <span
                 key={badge}
                 className="font-sans text-xs text-kokoa-dark/40 tracking-wide border border-kokoa-dark/10 rounded-full px-3 py-1"
@@ -186,7 +177,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.button
         onClick={scrollToNext}
         className="absolute bottom-9 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-kokoa-dark/25 hover:text-kokoa-berry transition-colors duration-300"

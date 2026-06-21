@@ -5,10 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { label: "The Range",        id: "the-range" },
-  { label: "Our Promise",      id: "upcycling" },
-  { label: "Made in Ecuador",  id: "origin" },
-  { label: "Partner With Us", id: "partner" },
+  { label: "Frozen Fruit",     id: "the-range" },
+  { label: "Beverages",        id: "beverages" },
+  { label: "Our Story",        id: "our-story" },
+  { label: "Partner With Us",  id: "partner" },
 ];
 
 export default function Navbar() {

@@ -7,7 +7,13 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
 
-    const res = await fetch("https://formsubmit.co/ajax/jonathan@kokoafruits.com", {
+    const subject = body.type === "sample-request"
+      ? `Sample Request — ${body.company}`
+      : body.type === "distribution"
+        ? `Distribution Inquiry — ${body.company}`
+        : `LeKokoa B2B Inquiry — ${body.company}`;
+
+    const res = await fetch("https://formsubmit.co/ajax/hello@kokoafruits.com", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -16,12 +22,15 @@ export async function POST(req: Request) {
         "Referer": "https://kokoafruits.com/",
       },
       body: JSON.stringify({
-        company:  body.company,
-        name:     body.name,
-        email:    body.email,
-        message:  body.message,
-        _subject: `Kokoa B2B Inquiry — ${body.company}`,
-        _cc:      "kevin@kokoafruits.com,joe@kokoafruits.com",
+        company:            body.company,
+        name:               body.name,
+        email:              body.email,
+        country:            body.country ?? "",
+        business_type:      body.businessType ?? "",
+        products_interest:  body.productsOfInterest ?? "",
+        message:            body.message,
+        _subject: subject,
+        _cc:      "kevin@kokoafruits.com",
         _captcha: "false",
         _template: "table",
       }),
@@ -36,11 +45,8 @@ export async function POST(req: Request) {
       typeof data.message === "string" &&
       data.message.toLowerCase().includes("activation");
 
-    // Mark form submitted in analytics
     if ((ok || needsActivation) && body.session_id) {
-      try {
-        updateVisit(body.session_id, undefined, true);
-      } catch { /* analytics failure must never break the form */ }
+      try { updateVisit(body.session_id, undefined, true); } catch { /* never break form */ }
     }
 
     return NextResponse.json({ success: ok || needsActivation });

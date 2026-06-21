@@ -16,7 +16,7 @@ function HeroProductVisual() {
   }, []);
 
   return (
-    <div className="relative w-[340px] md:w-[460px] lg:w-[560px] xl:w-[630px] h-[400px] md:h-[520px] lg:h-[620px]">
+    <div className="relative w-[510px] md:w-[690px] lg:w-[840px] xl:w-[945px] max-w-[90vw] lg:max-w-none h-[600px] md:h-[780px] lg:h-[930px]">
       <motion.div
         className="absolute inset-0"
         animate={{ y: [0, -16, 0] }}
@@ -168,7 +168,7 @@ export default function Hero() {
 
         {/* Right — hero product */}
         <motion.div
-          className="order-1 lg:order-2 flex justify-center lg:justify-end"
+          className="order-1 lg:order-2 flex justify-center"
           initial={{ opacity: 0, scale: 0.88, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}

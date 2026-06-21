@@ -152,7 +152,7 @@ export default function ProductShowcase() {
               transition={{ delay: i * 0.07 }}
             >
               <img
-                src={f.image}
+                src={f.showcaseImage ?? f.image}
                 alt={f.name}
                 className="w-full h-24 object-contain mb-3"
               />

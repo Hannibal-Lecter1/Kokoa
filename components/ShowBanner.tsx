@@ -8,11 +8,11 @@ export default function ShowBanner({ contactHref = "#partner" }: { contactHref?:
   if (dismissed) return null;
 
   return (
-    <div className="relative bg-kokoa-dark border-t-2 border-kokoa-husk text-white">
+    <div className="sticky top-[72px] z-40 relative bg-kokoa-dark border-t-2 border-kokoa-husk text-white">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-center gap-3">
         <Ticket className="hidden sm:block w-4 h-4 text-kokoa-husk flex-shrink-0" />
         <p className="font-sans text-xs md:text-sm tracking-wide text-center">
-          <span className="font-semibold tracking-[0.12em] uppercase">Summer Fancy Food Show 2026</span>
+          <span className="font-semibold tracking-[0.12em] uppercase">Come Visit Us at the Summer Fancy Food Show 2026</span>
           <span className="mx-2 opacity-40">·</span>
           <span className="text-kokoa-husk font-semibold">Booth 3810</span>
         </p>

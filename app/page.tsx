@@ -12,9 +12,8 @@ export default function Home() {
   return (
     <main>
       <Navbar />
-      <div className="pt-[72px] bg-kokoa-paper">
-        <ShowBanner />
-      </div>
+      <div className="h-[72px]" />
+      <ShowBanner />
       <Hero />
       <ProductShowcase />
       <GalleryDuo />

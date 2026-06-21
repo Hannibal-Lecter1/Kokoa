@@ -16,7 +16,9 @@ function HeroProductVisual() {
   }, []);
 
   return (
-    <div className="relative w-[510px] md:w-[690px] lg:w-[840px] xl:w-[945px] max-w-[90vw] lg:max-w-none h-[600px] md:h-[780px] lg:h-[930px]">
+    /* Mobile: viewport-width-relative + aspect-ratio driven height.
+       Desktop: fills the flex-1 self-stretch column, capped at 840×630. */
+    <div className="relative w-[88vw] sm:w-[72vw] aspect-[4/3] lg:w-full lg:aspect-auto lg:h-full max-w-[840px] max-h-[630px]">
       <motion.div
         className="absolute inset-0"
         animate={{ y: [0, -16, 0] }}
@@ -83,15 +85,26 @@ export default function Hero() {
     document.getElementById("the-range")?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <section className="relative min-h-screen w-full bg-kokoa-paper flex items-center overflow-hidden">
+    <section className="relative min-h-screen w-full bg-kokoa-paper overflow-hidden">
 
       <HeroBackground />
       <div className="absolute inset-0 bg-kokoa-paper/70" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-8 items-center py-32 lg:py-0 min-h-screen">
+      {/* Full-width flex layout — product column not constrained by max-w-7xl */}
+      <div className="relative z-10 w-full min-h-screen flex flex-col lg:flex-row items-center">
 
-        {/* Left — copy */}
-        <div className="order-2 lg:order-1">
+        {/* Mobile: product above text */}
+        <motion.div
+          className="lg:hidden flex justify-center w-full px-6 pt-24 pb-6"
+          initial={{ opacity: 0, scale: 0.88 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <HeroProductVisual />
+        </motion.div>
+
+        {/* Left — copy (45% on desktop) */}
+        <div className="w-full lg:w-[45%] shrink-0 px-6 lg:pl-12 xl:pl-20 2xl:pl-28 pb-24 lg:pb-0">
           <motion.span
             className="font-sans text-xs tracking-[0.35em] uppercase text-kokoa-berry block mb-6"
             initial={{ opacity: 0, y: 16 }}
@@ -166,9 +179,9 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Right — hero product */}
+        {/* Right — product (fills remaining width on desktop, self-stretches to section height) */}
         <motion.div
-          className="order-1 lg:order-2 flex justify-center"
+          className="hidden lg:flex flex-1 self-stretch items-center justify-center"
           initial={{ opacity: 0, scale: 0.88, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}

@@ -11,8 +11,10 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <main>
-      <ShowBanner />
       <Navbar />
+      <div className="pt-[72px] bg-kokoa-paper">
+        <ShowBanner />
+      </div>
       <Hero />
       <ProductShowcase />
       <GalleryDuo />

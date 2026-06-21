@@ -43,6 +43,7 @@ export default function RootLayout({
           "/products/tub-rasp-dark.webp",
           "/products/tub-blue.webp",
           "/products/tub-banana.webp",
+          "/products/tub-pina-colada.webp",
         ].map((src) => (
           <link key={src} rel="preload" as="image" href={src} fetchPriority="high" />
         ))}

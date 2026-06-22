@@ -47,7 +47,7 @@ export default function RootLayout({
         ].map((src) => (
           <link key={src} rel="preload" as="image" href={src} fetchPriority="high" />
         ))}
-        <link rel="preload" as="image" href="/lifestyle/scattered.jpeg" />
+        <link rel="preload" as="image" href="/lifestyle/splash-raspberry.webp" />
       </head>
       <body><AnalyticsTracker />{children}</body>
     </html>

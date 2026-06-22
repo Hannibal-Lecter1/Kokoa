@@ -8,16 +8,16 @@ import { motion } from "framer-motion";
 export function GalleryDuo() {
   const photos = [
     {
-      src: "/lifestyle/lids-pink.jpeg",
-      alt: "All six Kokoa flavours — lid flat-lay on pink",
+      src: "/lifestyle/splash-strawberry.webp",
+      alt: "Kokoa Strawberries — double-coated fruit bites",
     },
     {
-      src: "/lifestyle/stacked-red.jpeg",
-      alt: "Kokoa tubs stacked — made in Guayaquil, Ecuador",
+      src: "/lifestyle/splash-blueberry.webp",
+      alt: "Kokoa Blueberries — double-coated fruit bites",
     },
     {
-      src: "/lifestyle/scattered.jpeg",
-      alt: "Kokoa tubs scattered on a dark surface",
+      src: "/lifestyle/splash-banana.webp",
+      alt: "Kokoa Bananas — double-coated fruit bites",
     },
   ];
 

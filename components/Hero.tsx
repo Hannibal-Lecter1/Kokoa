@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { frozenFlavors } from "@/lib/products";
@@ -56,27 +56,37 @@ function HeroProductVisual() {
   );
 }
 
+const heroBackgrounds = [
+  "/lifestyle/splash-raspberry.webp",
+  "/lifestyle/splash-strawberry.webp",
+  "/lifestyle/splash-blueberry.webp",
+  "/lifestyle/splash-banana.webp",
+  "/lifestyle/splash-pina.webp",
+];
+
 function HeroBackground() {
-  const imgRef = useRef<HTMLImageElement>(null);
+  const [bg, setBg] = useState(0);
 
   useEffect(() => {
-    const img = imgRef.current;
-    if (!img) return;
-    if (img.complete && img.naturalWidth > 0) {
-      img.style.opacity = "0.40";
-    }
+    const id = setInterval(() => setBg((i) => (i + 1) % heroBackgrounds.length), 5000);
+    return () => clearInterval(id);
   }, []);
 
   return (
-    <img
-      ref={imgRef}
-      src="/lifestyle/scattered.jpeg"
-      alt=""
-      aria-hidden="true"
-      className="absolute inset-0 w-full h-full object-cover object-center"
-      style={{ opacity: 0, transition: "opacity 0.7s ease" }}
-      onLoad={(e) => { e.currentTarget.style.opacity = "0.40"; }}
-    />
+    <div className="absolute inset-0">
+      {heroBackgrounds.map((src, i) => (
+        <motion.img
+          key={src}
+          src={src}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          initial={false}
+          animate={{ opacity: i === bg ? 0.4 : 0 }}
+          transition={{ duration: 1.6, ease: "easeInOut" }}
+        />
+      ))}
+    </div>
   );
 }
 

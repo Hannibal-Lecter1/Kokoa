@@ -110,7 +110,7 @@ export default function FancyFoodPage() {
           Meet <span className="italic text-kokoa-husk">LeKokoa</span>
         </h1>
         <p className="font-sans text-white/60 text-lg mb-6">Booth 3810</p>
-        <a href="#contact"
+        <a href="https://calendly.com/kevin-kokoafruits/30min" target="_blank" rel="noopener noreferrer"
           className="inline-block font-sans text-xs tracking-[0.2em] uppercase bg-kokoa-berry text-white px-8 py-3.5 rounded-lg hover:bg-kokoa-berry/85 transition-all duration-300">
           Book a Meeting →
         </a>
@@ -174,15 +174,8 @@ export default function FancyFoodPage() {
           </div>
         </section>
 
-        {/* ── Sample Request ─────────────────────── */}
-        <section id="contact">
-          <p className="font-sans text-xs tracking-[0.35em] uppercase text-kokoa-berry mb-3">Request Samples</p>
-          <h2 className="font-serif text-2xl text-kokoa-dark mb-6">Request a Sample</h2>
-          <ContactForm type="sample-request" submitLabel="Request Samples" />
-        </section>
-
         {/* ── Distribution Inquiry ───────────────── */}
-        <section>
+        <section id="contact">
           <p className="font-sans text-xs tracking-[0.35em] uppercase text-kokoa-sage mb-3">Distribution</p>
           <h2 className="font-serif text-2xl text-kokoa-dark mb-6">Distribution Inquiry</h2>
           <ContactForm type="distribution" submitLabel="Send Inquiry" />

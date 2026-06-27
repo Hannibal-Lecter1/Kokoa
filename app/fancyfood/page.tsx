@@ -128,7 +128,7 @@ export default function FancyFoodPage() {
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
             {frozenFlavors.map((f) => (
               <div key={f.id} className="bg-white rounded-xl p-4 border border-black/5 flex flex-col items-center text-center">
-                <img src={f.image} alt={f.name} className="w-full h-28 object-contain mb-3" />
+                <img src={f.showcaseImage ?? f.image} alt={f.name} className="w-full h-28 object-contain mb-3" />
                 <p className="font-serif text-sm text-kokoa-dark mb-0.5">{f.name}</p>
                 <p className="font-sans text-xs text-kokoa-dark/40 leading-tight">{f.chocolate}</p>
               </div>
